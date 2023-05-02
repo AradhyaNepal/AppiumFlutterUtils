@@ -100,7 +100,7 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                             updateOutput("GestureDetectorLongClick");
                           },
                           child: Semantics(
-                            label: "GestureDetectorDown",
+                            label: "GestureDetectorChild",
                             child: const Text("GestureDetector"),
                           ),
                         ),
