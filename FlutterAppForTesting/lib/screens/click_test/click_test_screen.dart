@@ -25,6 +25,19 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
             title: const Text(
               ClickTestScreen.heading,
             ),
+            actions: [
+              IconButton(
+                key: const ValueKey("reset"),
+                  onPressed: (){
+                    setState(() {
+                      outputBox="";
+                    });
+                  },
+                  icon: const Icon(
+                    Icons.lock_reset,
+                  ),
+              )
+            ],
           ),
           body: Column(
             children: [
@@ -43,7 +56,7 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                 height: 10,
               ),
               Text(
-                outputBox,
+                outputBox.isEmpty?"No Output":"Output is $outputBox",
                 key: const ValueKey("output-box"),
                 semanticsLabel: "OutputBox",
               ),
