@@ -2,7 +2,7 @@ import traceback
 from setup import UtilsSetup
 
 
-def finds_one_widget(finder: str) -> bool:
+def finds_some_widgets(finder: str) -> bool:
     try:
         UtilsSetup.driver.execute_script('flutter:waitFor', finder, 1500)
         return True
