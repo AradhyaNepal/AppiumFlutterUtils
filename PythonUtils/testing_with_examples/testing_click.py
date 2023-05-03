@@ -187,12 +187,6 @@ def finds_reset_output(finder):
     assert finds_one_widget(finder.by_text("No Output")), "Finds No Output"
 
 
-def finds_one_widget(finder: FlutterFinder) -> bool:
-    try:
-        self.driver.execute_script('flutter:waitFor', finder, 1000)
-        return True
-    except Exception as e:
-        return False
 
 
 if __name__ == "__main__":
