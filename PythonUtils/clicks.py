@@ -42,7 +42,7 @@ def long_click(value: str, how_to_click: HowToClick = HowToClick.BY_SEMANTIC_LAB
     __click(value, __ClickType.LONG_CLICK, duration, how_to_click, from_parent_finder)
 
 
-def __click(value: str, click_type: int, duration: int = 0,
+def __click(value: str, click_type: int, duration: int = None,
             how_to_click: HowToClick = HowToClick.BY_SEMANTIC_LABEL, from_parent_finder: str = None, ):
     match how_to_click:
         case HowToClick.ELEVATED_BUTTON:
@@ -140,7 +140,7 @@ def __find_from_specific_parent(child_finder: str, from_parent_finder: str) -> s
     )
 
 
-def __click_if_element_found(finder: str, click_type: int = __ClickType.CLICK, duration: int = 0):
+def __click_if_element_found(finder: str, click_type: int = __ClickType.CLICK, duration: int = None):
     if finds_some_widgets(finder) is False:
         raise "Cannot not find specific one widget to click"
     if finds_is_tappable(finder) is False:
@@ -151,5 +151,8 @@ def __click_if_element_found(finder: str, click_type: int = __ClickType.CLICK, d
         case __ClickType.DOUBLE_CLICK:
             TouchAction(UtilsSetup.driver).tap(FlutterElement(UtilsSetup.driver, finder), count=2).perform()
         case __ClickType.LONG_CLICK:
-            TouchAction(UtilsSetup.driver).long_press(FlutterElement(UtilsSetup.driver, finder),
-                                                      duration=duration).perform()
+            if duration is None:
+                TouchAction(UtilsSetup.driver).long_press(FlutterElement(UtilsSetup.driver, finder)).perform()
+            else:
+                TouchAction(UtilsSetup.driver).long_press(FlutterElement(UtilsSetup.driver, finder),
+                                                          duration=duration).perform()

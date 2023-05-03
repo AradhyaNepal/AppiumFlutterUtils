@@ -11,7 +11,6 @@ def main():
     UtilsSetup.setup(driver, finder)
     init(driver, finder)
     testing_click_on_gesture_detector(driver, finder)
-    testing_click_on_ink_well(driver, finder)
 
 
 def init(driver, finder):
@@ -27,24 +26,24 @@ def init(driver, finder):
 
 def testing_click_on_gesture_detector(driver, finder):
     try:
-        double_click("GestureDetectorParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
+        long_click("GestureDetectorParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
         assert finds_some_widgets(
             finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
         reset(driver, finder)
-        # double_click("GestureDetectorChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL, identifier_added_to_child=True)
+        # long_click("GestureDetectorChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL, identifier_added_to_child=True)
         # assert finds_some_widgets(
         #     finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_SEMANTIC_LABEL Child"
         # reset(driver, finder)
-        double_click("gesture-detector", how_to_click=HowToClick.BY_VALUE_KEY)
+        long_click("gesture-detector", how_to_click=HowToClick.BY_VALUE_KEY)
         assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_VALUE_KEY"
         reset(driver, finder)
-        double_click("GestureDetector", how_to_click=HowToClick.BY_TEXT)
+        long_click("GestureDetector", how_to_click=HowToClick.BY_TEXT)
         assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_TEXT"
         reset(driver, finder)
-        double_click("GestureDetector", how_to_click=HowToClick.BY_TYPE)
+        long_click("GestureDetector", how_to_click=HowToClick.BY_TYPE)
         assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_TYPE"
         reset(driver, finder)
-        double_click("GestureDetector", how_to_click=HowToClick.GESTURE_DETECTOR)
+        long_click("GestureDetector", how_to_click=HowToClick.GESTURE_DETECTOR)
         assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.GESTURE_DETECTOR"
         reset(driver, finder)
     except Exception as e:
@@ -53,28 +52,28 @@ def testing_click_on_gesture_detector(driver, finder):
         print(traceback.format_exc())
 
 
-def testing_click_on_ink_well(driver, finder):
+def testing_click_on_text_button(driver, finder):
     try:
-        double_click("InkWellParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
-        assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
+        long_click("TextButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
+        assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
         reset(driver, finder)
-        # double_click("InkWellChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL, identifier_added_to_child=True)
-        # assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_SEMANTIC_LABEL Child"
+        # long_click("TextButtonChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL, identifier_added_to_child=True)
+        # assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_SEMANTIC_LABEL Child"
         # reset(driver, finder)
-        double_click("ink-well", how_to_click=HowToClick.BY_VALUE_KEY)
-        assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_VALUE_KEY"
+        long_click("text-button", how_to_click=HowToClick.BY_VALUE_KEY)
+        assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_VALUE_KEY"
         reset(driver, finder)
-        double_click("InkWell", how_to_click=HowToClick.BY_TEXT)
-        assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_TEXT"
+        long_click("TextButton", how_to_click=HowToClick.BY_TEXT)
+        assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_TEXT"
         reset(driver, finder)
-        double_click("InkWell", how_to_click=HowToClick.BY_TYPE)
-        assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_TYPE"
+        long_click("TextButton", how_to_click=HowToClick.BY_TYPE)
+        assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_TYPE"
         reset(driver, finder)
-        double_click("InkWell", how_to_click=HowToClick.INKWELL)
-        assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.INKWELL"
+        long_click("TextButton", how_to_click=HowToClick.TEXT_BUTTON)
+        assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.TEXT_BUTTON"
         reset(driver, finder)
     except Exception as e:
-        print("Testing Click On InkWellClick Failed")
+        print("Testing Click On TextButtonClick Failed")
         print(e)
         print(traceback.format_exc())
 
