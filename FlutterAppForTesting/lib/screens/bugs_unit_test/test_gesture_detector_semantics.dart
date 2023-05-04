@@ -19,3 +19,21 @@ class TestGestureDetectorSemantics extends StatelessWidget {
     );
   }
 }
+
+class TestGestureDetectorSemanticsInsteadContainer extends StatelessWidget {
+  const TestGestureDetectorSemanticsInsteadContainer({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter App For Testing',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: Semantics(
+        label: "GestureDetector",
+        child: Container(),
+      ),
+    );
+  }
+}

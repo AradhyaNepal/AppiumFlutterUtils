@@ -14,22 +14,44 @@ import 'package:flutter_test/flutter_test.dart';
 
 
 void main() {
-  testWidgets('Finds Gesture Detector by semantic', (WidgetTester tester) async {
-    await tester.pumpWidget(const TestGestureDetectorSemantics());
-    await tester.pumpAndSettle();
-    expect(find.bySemanticsLabel("GestureDetector"), findsOneWidget);
+  group("For Semantic of InkWell, GestureDetector and Icon Button", () {
+    testWidgets('Finds Gesture Detector by semantic', (WidgetTester tester) async {
+      await tester.pumpWidget(const TestGestureDetectorSemantics());
+      await tester.pumpAndSettle();
+      expect(find.bySemanticsLabel("GestureDetector"), findsOneWidget);
+    });
+
+    testWidgets('Finds Icon Button by semantic', (WidgetTester tester) async {
+      await tester.pumpWidget(const TestIconButtonSemantics());
+      await tester.pumpAndSettle();
+      expect(find.bySemanticsLabel("IconButton"), findsOneWidget);
+    });
+
+    testWidgets('Finds InkWell by semantics', (WidgetTester tester) async {
+      await tester.pumpWidget(const TestInkWellSemantics());
+      await tester.pumpAndSettle();
+      expect(find.bySemanticsLabel("InkWell"), findsOneWidget);
+    });
   });
 
-  testWidgets('Finds Icon Button by semantic', (WidgetTester tester) async {
-    await tester.pumpWidget(const TestIconButtonSemantics());
-    await tester.pumpAndSettle();
-    expect(find.bySemanticsLabel("IconButton"), findsOneWidget);
-  });
+  group("Same Semantic for Container", () {
+    testWidgets('Finds Gesture Detector by semantic', (WidgetTester tester) async {
+      await tester.pumpWidget(const TestGestureDetectorSemanticsInsteadContainer());
+      await tester.pumpAndSettle();
+      expect(find.bySemanticsLabel("GestureDetector"), findsOneWidget);
+    });
 
-  testWidgets('Finds InkWell by semantics', (WidgetTester tester) async {
-    await tester.pumpWidget(const TestInkWellSemantics());
-    await tester.pumpAndSettle();
-    expect(find.bySemanticsLabel("InkWell"), findsOneWidget);
+    testWidgets('Finds Icon Button by semantic', (WidgetTester tester) async {
+      await tester.pumpWidget(const TestIconButtonSemanticsInsteadContainer());
+      await tester.pumpAndSettle();
+      expect(find.bySemanticsLabel("IconButton"), findsOneWidget);
+    });
+
+    testWidgets('Finds InkWell by semantics', (WidgetTester tester) async {
+      await tester.pumpWidget(const TestInkWellSemanticsInsteadContainer());
+      await tester.pumpAndSettle();
+      expect(find.bySemanticsLabel("InkWell"), findsOneWidget);
+    });
   });
 
 }
