@@ -4,7 +4,7 @@ from setup import UtilsSetup
 
 def finds_some_widgets(finder: str) -> bool:
     try:
-        UtilsSetup.driver.execute_script('flutter:waitFor', finder, 1500)
+        UtilsSetup.driver.execute_script('flutter:waitFor', finder, 1000)
         return True
     except Exception as e:
         print(e)
@@ -23,7 +23,7 @@ def finds_some_widgets(finder: str) -> bool:
 
 def finds_is_tappable(finder: str) -> bool:
     try:
-        UtilsSetup.driver.execute_script('flutter:waitForTappable', finder, 1500)
+        UtilsSetup.driver.execute_script('flutter:waitForTappable', finder, 50)
         return True
     except Exception as e:
         print(e)

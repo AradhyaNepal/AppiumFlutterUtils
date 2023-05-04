@@ -10,7 +10,12 @@ def main():
     driver = webdriver.Remote(appium_server_url, capabilities)
     finder = FlutterFinder()
     UtilsSetup.setup(driver, finder)
-    FlutterReportGenerator.setup(driver, "Python Utils", "", capabilities)
+    FlutterReportGenerator.setup(driver, "Python Utils", "./output/", capabilities)
+    group_testing_click()
+    FlutterReportGenerator.generate_report()
+
+
+def group_testing_click():
     test(
         "Initial Setup",
         init,
@@ -42,9 +47,9 @@ def main():
 
 
 def init(_):
-    FlutterElement(UtilsSetup.driver, finder.by_value_key("/ClickTestScreen")).click()
-    assert finds_some_widgets(UtilsSetup.finder.by_type("ClickTestScreen")), "Finds ClickTestScreen"
-    finds_reset_output(UtilsSetup.finder)
+    FlutterElement(UtilsSetup.driver, UtilsSetup.finder.by_value_key("/ClickTestScreen")).click()
+    UtilsSetup.driver.execute_script('flutter:waitFor', UtilsSetup.finder.by_type("ClickTestScreen"), 1500)
+    finds_reset_output()
 
 
 def group_elevated_button():
@@ -73,31 +78,32 @@ def group_elevated_button():
 def testing_elevated_semantic(_):
     reset()
     click("ElevatedButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
-    assert finds_some_widgets(finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
+    assert finds_some_widgets(
+        UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
 
 
 def testing_elevated_key(_):
     reset()
     click("elevated-button", how_to_click=HowToClick.BY_VALUE_KEY)
-    assert finds_some_widgets(finder.by_text("Output is ElevatedButton")), "HowToClick.BY_VALUE_KEY"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_VALUE_KEY"
 
 
 def testing_elevated_text(_):
     reset()
     click("ElevatedButton", how_to_click=HowToClick.BY_TEXT)
-    assert finds_some_widgets(finder.by_text("Output is ElevatedButton")), "HowToClick.BY_TEXT"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_TEXT"
 
 
 def testing_elevated_type(_):
     reset()
     click("ElevatedButton", how_to_click=HowToClick.BY_TYPE)
-    assert finds_some_widgets(finder.by_text("Output is ElevatedButton")), "HowToClick.BY_TYPE"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_TYPE"
 
 
 def testing_elevated(_):
     reset()
-    click("ElevatedButton", how_to_click=HowToClick.ELEVATED_BUTTON)
-    assert finds_some_widgets(finder.by_text("Output is ElevatedButton")), "HowToClick.ELEVATED_BUTTON "
+    click("ElevatedButton", how_to_click=HowToClick.ELEVATED_BUTTON_TEXT)
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.ELEVATED_BUTTON "
 
 
 def group_gesture_detector():
@@ -124,10 +130,9 @@ def group_gesture_detector():
 
 
 def testing_gesture_detector_semantic(_):
-    # TODO: Critical Bug
+    # TODO: Critical Bug from flutter framework, reported the issue https://github.com/flutter/flutter/issues/126059
     reset()
-    click("GestureDetectorChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL,
-          from_parent_finder=UtilsSetup.finder.by_type("GestureDetector"))
+    click("GestureDetectorTest")
     assert finds_some_widgets(
         finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_SEMANTIC_LABEL Child"
 
@@ -135,26 +140,27 @@ def testing_gesture_detector_semantic(_):
 def testing_gesture_detector_key(_):
     reset()
     click("gesture-detector", how_to_click=HowToClick.BY_VALUE_KEY)
-    assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_VALUE_KEY"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_VALUE_KEY"
 
 
 def testing_gesture_detector_text(_):
     reset()
     click("GestureDetector", how_to_click=HowToClick.BY_TEXT)
-    assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_TEXT"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_TEXT"
 
 
 def testing_gesture_detector_type(_):
     reset()
-    # Todo: Less Critical
+    # Less critical bug so ignored
     click("GestureDetector", how_to_click=HowToClick.BY_TYPE)
-    assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_TYPE"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_TYPE"
 
 
 def testing_gesture_detector(_):
     reset()
-    click("GestureDetector", how_to_click=HowToClick.GESTURE_DETECTOR)
-    assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.GESTURE_DETECTOR"
+    click("GestureDetector", how_to_click=HowToClick.GESTURE_DETECTOR_TEXT)
+    assert finds_some_widgets(
+        UtilsSetup.finder.by_text("Output is GestureDetectorClick")), "HowToClick.GESTURE_DETECTOR"
 
 
 def group_ink_well():
@@ -182,34 +188,35 @@ def group_ink_well():
 
 def testing_ink_well_semantic(_):
     reset()
-    # TODO: Critical Bug
+    # TODO: Critical Bug from flutter framework, reported the issue https://github.com/flutter/flutter/issues/126059
     click("InkWellParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
-    assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
+    assert finds_some_widgets(
+        UtilsSetup.finder.by_text("Output is InkWellClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
 
 
 def testing_ink_well_id(_):
     reset()
     click("ink-well", how_to_click=HowToClick.BY_VALUE_KEY)
-    assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_VALUE_KEY"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellClick")), "HowToClick.BY_VALUE_KEY"
 
 
 def testing_ink_well_text(_):
     reset()
     click("InkWell", how_to_click=HowToClick.BY_TEXT)
-    assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_TEXT"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellClick")), "HowToClick.BY_TEXT"
 
 
 def testing_ink_well_type(_):
     reset()
-    # Todo:Less Critical
+    # Less critical bug, so ignored
     click("InkWell", how_to_click=HowToClick.BY_TYPE)
-    assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_TYPE"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellClick")), "HowToClick.BY_TYPE"
 
 
 def testing_ink_well(_):
     reset()
-    click("InkWell", how_to_click=HowToClick.INKWELL)
-    assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.INKWELL"
+    click("InkWell", how_to_click=HowToClick.INKWELL_TEXT)
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellClick")), "HowToClick.INKWELL"
 
 
 def group_text_button():
@@ -238,31 +245,32 @@ def group_text_button():
 def testing_text_button_semantic(_):
     reset()
     click("TextButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
-    assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
+    assert finds_some_widgets(
+        UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
 
 
 def testing_text_button_id(_):
     reset()
     click("text-button", how_to_click=HowToClick.BY_VALUE_KEY)
-    assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_VALUE_KEY"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.BY_VALUE_KEY"
 
 
 def testing_text_button_text(_):
     reset()
     click("TextButton", how_to_click=HowToClick.BY_TEXT)
-    assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_TEXT"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.BY_TEXT"
 
 
 def testing_text_button_type(_):
     reset()
     click("TextButton", how_to_click=HowToClick.BY_TYPE)
-    assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_TYPE"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.BY_TYPE"
 
 
 def testing_text_button(_):
     reset()
     click("TextButton", how_to_click=HowToClick.TEXT_BUTTON)
-    assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.TEXT_BUTTON"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.TEXT_BUTTON"
 
 
 def group_icon_button():
@@ -281,23 +289,23 @@ def group_icon_button():
 
 
 def testing_icon_button_semantic(_):
-    # TODO: Critical Bug
+    # TODO: Critical Bug from flutter framework, reported the issue https://github.com/flutter/flutter/issues/126059
     reset()
     click("IconButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
-    assert finds_some_widgets(finder.by_text("Output is IconButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is IconButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
 
 
 def testing_icon_button_id(_):
     reset()
     click("icon-button", how_to_click=HowToClick.BY_VALUE_KEY)
-    assert finds_some_widgets(finder.by_text("Output is IconButton")), "HowToClick.BY_VALUE_KEY"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is IconButton")), "HowToClick.BY_VALUE_KEY"
 
 
 def testing_icon_button_type(_):
+    # Less critical bug, so ignroed
     reset()
-    # Todo:Less Critical
     click("IconButton", how_to_click=HowToClick.BY_TYPE)
-    assert finds_some_widgets(finder.by_text("Output is IconButton")), "HowToClick.BY_TYPE"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is IconButton")), "HowToClick.BY_TYPE"
 
 
 def group_floating_action():
@@ -323,34 +331,35 @@ def testing_floating_semantic(_):
     reset()
     click("FloatingActionButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
     assert finds_some_widgets(
-        finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
+        UtilsSetup.finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
 
 
 def testing_floating_id(_):
     reset()
     click("floating-action-button", how_to_click=HowToClick.BY_VALUE_KEY)
-    assert finds_some_widgets(finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_VALUE_KEY"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_VALUE_KEY"
 
 
 def testing_floating_type(_):
     reset()
     click("FloatingActionButton", how_to_click=HowToClick.BY_TYPE)
-    assert finds_some_widgets(finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_TYPE"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_TYPE"
 
 
 def testing_floating(_):
     reset()
     click("FloatingActionButton", how_to_click=HowToClick.FLOATING_ACTION_BUTTON)
-    assert finds_some_widgets(finder.by_text("Output is FloatingActionButton")), "HowToClick.FLOATING_ACTION_BUTTON"
+    assert finds_some_widgets(
+        UtilsSetup.finder.by_text("Output is FloatingActionButton")), "HowToClick.FLOATING_ACTION_BUTTON"
 
 
 def reset():
-    FlutterElement(UtilsSetup.driver, finder.by_value_key("reset")).click()
-    finds_reset_output(UtilsSetup.finder)
+    FlutterElement(UtilsSetup.driver, UtilsSetup.finder.by_value_key("reset")).click()
+    finds_reset_output()
 
 
-def finds_reset_output(finder):
-    assert finds_some_widgets(finder.by_text("No Output")), "Finds No Output"
+def finds_reset_output():
+    assert finds_some_widgets(UtilsSetup.finder.by_text("No Output")), "Finds No Output"
 
 
 if __name__ == "__main__":

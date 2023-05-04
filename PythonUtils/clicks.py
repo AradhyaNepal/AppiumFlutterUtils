@@ -6,9 +6,12 @@ from finds_widget import *
 
 
 class HowToClick:
-    ELEVATED_BUTTON = 1
-    GESTURE_DETECTOR = 2
-    INKWELL = 3
+    ELEVATED_BUTTON_TEXT = 1
+    ELEVATED_BUTTON_ITEM = 12
+    GESTURE_DETECTOR_TEXT = 2
+    GESTURE_DETECTOR_ITEM = 11
+    INKWELL_TEXT = 3
+    INKWELL_ITEM = 12
     FLOATING_ACTION_BUTTON = 4
     TEXT_BUTTON = 5
     BY_VALUE_KEY = 7
@@ -28,14 +31,14 @@ def click(value: str, how_to_click: HowToClick = HowToClick.BY_SEMANTIC_LABEL, f
 
 
 def double_click(value: str, how_to_click: HowToClick = HowToClick.BY_SEMANTIC_LABEL, from_parent_finder: str = None, ):
-    if how_to_click == HowToClick.ELEVATED_BUTTON or how_to_click == HowToClick.TEXT_BUTTON or how_to_click == HowToClick.FLOATING_ACTION_BUTTON:
+    if how_to_click == HowToClick.ELEVATED_BUTTON_TEXT or how_to_click == HowToClick.TEXT_BUTTON or how_to_click == HowToClick.FLOATING_ACTION_BUTTON:
         raise "Cannot Double Tap"
     __click(value, __ClickType.DOUBLE_CLICK, 0, how_to_click, from_parent_finder)
 
 
 def long_click(value: str, how_to_click: HowToClick = HowToClick.BY_SEMANTIC_LABEL, duration: int = 0,
                from_parent_finder: str = None, ):
-    if how_to_click == HowToClick.ELEVATED_BUTTON or how_to_click == HowToClick.FLOATING_ACTION_BUTTON:
+    if how_to_click == HowToClick.ELEVATED_BUTTON_TEXT or how_to_click == HowToClick.FLOATING_ACTION_BUTTON:
         raise "Cannot Long Tap"
     __click(value, __ClickType.LONG_CLICK, duration, how_to_click, from_parent_finder)
 
@@ -43,21 +46,21 @@ def long_click(value: str, how_to_click: HowToClick = HowToClick.BY_SEMANTIC_LAB
 def __click(value: str, click_type: int, duration: int = None,
             how_to_click: HowToClick = HowToClick.BY_SEMANTIC_LABEL, from_parent_finder: str = None, ):
     match how_to_click:
-        case HowToClick.ELEVATED_BUTTON:
+        case HowToClick.ELEVATED_BUTTON_TEXT:
             __click_if_element_found(
                 __find_by_text_of_specific_type_of_button_and_from_specific_parent(value, "ElevatedButton",
                                                                                    from_parent_finder),
                 duration=duration,
                 click_type=click_type,
             )
-        case HowToClick.GESTURE_DETECTOR:
+        case HowToClick.GESTURE_DETECTOR_TEXT:
             __click_if_element_found(
                 __find_by_text_of_specific_type_of_button_and_from_specific_parent(value, "GestureDetector",
                                                                                    from_parent_finder),
                 duration=duration,
                 click_type=click_type,
             )
-        case HowToClick.INKWELL:
+        case HowToClick.INKWELL_TEXT:
             __click_if_element_found(
                 __find_by_text_of_specific_type_of_button_and_from_specific_parent(value, "InkWell",
                                                                                    from_parent_finder),

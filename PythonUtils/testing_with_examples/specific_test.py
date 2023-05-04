@@ -9,7 +9,7 @@ from time import sleep
 def main():
     driver = webdriver.Remote(appium_server_url, capabilities)
     UtilsSetup.setup(driver, FlutterFinder())
-    click("Click Test Screen",how_to_click=HowToClick.ELEVATED_BUTTON)
+    click("Click Test Screen", how_to_click=HowToClick.ELEVATED_BUTTON_TEXT)
     click("GestureDetectorChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
     sleep(1)
 
