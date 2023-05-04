@@ -11,12 +11,10 @@ class HowToClick:
     INKWELL = 3
     FLOATING_ACTION_BUTTON = 4
     TEXT_BUTTON = 5
-    # ICON_BUTTON = 6
     BY_VALUE_KEY = 7
     BY_TYPE = 8
     BY_TEXT = 9
     BY_SEMANTIC_LABEL = 10  # Default and recommended
-    # BY_SEMANTIC_LABEL_CHILD = 11
 
 
 class __ClickType:

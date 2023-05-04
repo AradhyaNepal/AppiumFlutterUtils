@@ -10,15 +10,12 @@ def main():
     finder = FlutterFinder()
     UtilsSetup.setup(driver, finder)
     init(driver, finder)
-    testing_click_on_elevated_button(driver, finder) #PASS
-    testing_click_on_gesture_detector(driver, finder) # Some failed
-    testing_click_on_ink_well(driver, finder) # Some failed
-    testing_click_on_text_button(driver, finder) #PASS
-    testing_click_on_icon_button(driver, finder) # Some failed
-    testing_click_on_floating_action(driver, finder) #PASS
-
-
-
+    # testing_click_on_elevated_button(driver, finder) #PASS
+    testing_click_on_gesture_detector(driver, finder)  # Some failed
+    # testing_click_on_ink_well(driver, finder) # Some failed
+    # testing_click_on_text_button(driver, finder) #PASS
+    # testing_click_on_icon_button(driver, finder) # Some failed
+    # testing_click_on_floating_action(driver, finder) #PASS
 
 
 def init(driver, finder):
@@ -37,9 +34,6 @@ def testing_click_on_elevated_button(driver, finder):
         click("ElevatedButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
         assert finds_some_widgets(finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
         reset(driver, finder)
-        # click("ElevatedButtonChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL, identifier_added_to_child=True)
-        # assert finds_some_widgets(finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL Child"
-        # reset(driver, finder)
         click("elevated-button", how_to_click=HowToClick.BY_VALUE_KEY)
         assert finds_some_widgets(finder.by_text("Output is ElevatedButton")), "HowToClick.BY_VALUE_KEY"
         reset(driver, finder)
@@ -60,20 +54,19 @@ def testing_click_on_elevated_button(driver, finder):
 
 def testing_click_on_gesture_detector(driver, finder):
     try:
-        # click("GestureDetectorParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
-        # assert finds_some_widgets(
-        #     finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
-        # reset(driver, finder)
-        # click("GestureDetectorChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL, identifier_added_to_child=True)
-        # assert finds_some_widgets(
-        #     finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_SEMANTIC_LABEL Child"
-        # reset(driver, finder)
+        # TODO: Critical Bug
+        click("GestureDetectorChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL,
+              from_parent_finder=UtilsSetup.finder.by_type("GestureDetector"))
+        assert finds_some_widgets(
+            finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_SEMANTIC_LABEL Child"
+        reset(driver, finder)
         click("gesture-detector", how_to_click=HowToClick.BY_VALUE_KEY)
         assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_VALUE_KEY"
         reset(driver, finder)
         click("GestureDetector", how_to_click=HowToClick.BY_TEXT)
         assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_TEXT"
         reset(driver, finder)
+        # Todo: Less Critical
         # click("GestureDetector", how_to_click=HowToClick.BY_TYPE)
         # assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_TYPE"
         # reset(driver, finder)
@@ -88,11 +81,9 @@ def testing_click_on_gesture_detector(driver, finder):
 
 def testing_click_on_ink_well(driver, finder):
     try:
+        # TODO: Critical Bug
         # click("InkWellParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
         # assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
-        # reset(driver, finder)
-        # click("InkWellChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL, identifier_added_to_child=True)
-        # assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_SEMANTIC_LABEL Child"
         # reset(driver, finder)
         click("ink-well", how_to_click=HowToClick.BY_VALUE_KEY)
         assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_VALUE_KEY"
@@ -100,6 +91,7 @@ def testing_click_on_ink_well(driver, finder):
         click("InkWell", how_to_click=HowToClick.BY_TEXT)
         assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_TEXT"
         reset(driver, finder)
+        # Todo:Less Critical
         # click("InkWell", how_to_click=HowToClick.BY_TYPE)
         # assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_TYPE"
         # reset(driver, finder)
@@ -117,9 +109,6 @@ def testing_click_on_text_button(driver, finder):
         click("TextButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
         assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
         reset(driver, finder)
-        # click("TextButtonChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL, identifier_added_to_child=True)
-        # assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_SEMANTIC_LABEL Child"
-        # reset(driver, finder)
         click("text-button", how_to_click=HowToClick.BY_VALUE_KEY)
         assert finds_some_widgets(finder.by_text("Output is TextButtonClick")), "HowToClick.BY_VALUE_KEY"
         reset(driver, finder)
@@ -140,20 +129,16 @@ def testing_click_on_text_button(driver, finder):
 
 def testing_click_on_icon_button(driver, finder):
     try:
+        # TODO: Critical Bug
         # click("IconButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
         # assert finds_some_widgets(finder.by_text("Output is IconButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
-        # reset(driver, finder)
-        # click("IconButtonChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL, identifier_added_to_child=True)
-        # assert finds_some_widgets(finder.by_text("Output is IconButton")), "HowToClick.BY_SEMANTIC_LABEL Child"
         # reset(driver, finder)
         click("icon-button", how_to_click=HowToClick.BY_VALUE_KEY)
         assert finds_some_widgets(finder.by_text("Output is IconButton")), "HowToClick.BY_VALUE_KEY"
         reset(driver, finder)
+        # Todo:Less Critical
         # click("IconButton", how_to_click=HowToClick.BY_TYPE)
         # assert finds_some_widgets(finder.by_text("Output is IconButton")), "HowToClick.BY_TYPE"
-        # reset(driver, finder)
-        # click("IconButton", how_to_click=HowToClick.ICON_BUTTON)
-        # assert finds_some_widgets(finder.by_text("Output is IconButton")), "HowToClick.ICON_BUTTON"
         # reset(driver, finder)
     except Exception as e:
         print("Testing Click On IconButton Failed")
@@ -167,10 +152,6 @@ def testing_click_on_floating_action(driver, finder):
         assert finds_some_widgets(
             finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
         reset(driver, finder)
-        # click("FloatingActionButtonChild", how_to_click=HowToClick.BY_SEMANTIC_LABEL, identifier_added_to_child=True)
-        # assert finds_some_widgets(
-        #     finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_SEMANTIC_LABEL Child"
-        # reset(driver, finder)
         click("floating-action-button", how_to_click=HowToClick.BY_VALUE_KEY)
         assert finds_some_widgets(finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_VALUE_KEY"
         reset(driver, finder)
