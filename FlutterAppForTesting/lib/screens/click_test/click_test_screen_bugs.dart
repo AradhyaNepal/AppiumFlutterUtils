@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
-class ClickTestScreen extends StatefulWidget {
-  static const String route = "/ClickTestScreen";
-  static const String heading = "Click Test Screen";
+class ClickTestScreenBugs extends StatefulWidget {
+  static const String route = "/ClickTestScreenBugs";
+  static const String heading = "Click Test Screen Bugs";
 
-  const ClickTestScreen({Key? key}) : super(key: key);
+  const ClickTestScreenBugs({Key? key}) : super(key: key);
 
   @override
-  State<ClickTestScreen> createState() => _ClickTestScreenState();
+  State<ClickTestScreenBugs> createState() => _ClickTestScreenBugsState();
 }
 
-class _ClickTestScreenState extends State<ClickTestScreen> {
+class _ClickTestScreenBugsState extends State<ClickTestScreenBugs> {
   String outputBox = "";
 
   @override
@@ -23,19 +23,19 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
         child: Scaffold(
           appBar: AppBar(
             title: const Text(
-              ClickTestScreen.heading,
+              ClickTestScreenBugs.heading,
             ),
             actions: [
               IconButton(
                 key: const ValueKey("reset"),
-                  onPressed: (){
-                    setState(() {
-                      outputBox="";
-                    });
-                  },
-                  icon: const Icon(
-                    Icons.lock_reset,
-                  ),
+                onPressed: () {
+                  setState(() {
+                    outputBox = "";
+                  });
+                },
+                icon: const Icon(
+                  Icons.lock_reset,
+                ),
               )
             ],
           ),
@@ -56,7 +56,7 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                 height: 10,
               ),
               Text(
-                outputBox.isEmpty?"No Output":"Output is $outputBox",
+                outputBox.isEmpty ? "No Output" : "Output is $outputBox",
                 key: const ValueKey("output-box"),
                 semanticsLabel: "OutputBox",
               ),
@@ -71,40 +71,9 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                   child: Column(
                     children: [
                       Semantics(
-                        label: "ElevatedButtonParent",
-                        child: ElevatedButton(
-                          key: const ValueKey("elevated-button"),
-                          onPressed: () {
-                            updateOutput("ElevatedButton");
-                          },
-                          child: Semantics(
-                            label: "ElevatedButtonChild",
-                            child: const Text("ElevatedButton"),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      GestureDetector(
-                        key: const ValueKey("gesture-detector"),
-                        onTap: () {
-                          updateOutput("GestureDetectorClick");
-                        },
-                        onDoubleTap: () {
-                          updateOutput("GestureDetectorDoubleClick");
-                        },
-                        onLongPress: () {
-                          updateOutput("GestureDetectorLongClick");
-                        },
-                        child: const Text("GestureDetector"),
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
-                      Semantics(
                         label: "GestureDetectorTest",
                         child: GestureDetector(
+                          excludeFromSemantics:true,
                           onTap: () {
                             updateOutput("GestureDetectorClick");
                           },
@@ -143,23 +112,7 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                         ),
                       ),
                       const SizedBox(
-                        height: 10,
-                      ),
-                      Semantics(
-                        label: "TextButtonParent",
-                        child: TextButton(
-                          key: const ValueKey("text-button"),
-                          onPressed: () {
-                            updateOutput("TextButtonClick");
-                          },
-                          onLongPress: () {
-                            updateOutput("TextButtonLongClick");
-                          },
-                          child: Semantics(
-                            label: "TextButtonChild",
-                            child: const Text("TextButton"),
-                          ),
-                        ),
+                        height: 40,
                       ),
                       Semantics(
                         label: "IconButtonParent",
@@ -179,21 +132,6 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                 ),
               ),
             ],
-          ),
-          floatingActionButton: Semantics(
-            label: "FloatingActionButtonParent",
-            child: FloatingActionButton(
-              key: const ValueKey("floating-action-button"),
-              onPressed: () {
-                updateOutput("FloatingActionButton");
-              },
-              child: Semantics(
-                label: "FloatingActionButtonChild",
-                child: const Icon(
-                  Icons.touch_app,
-                ),
-              ),
-            ),
           ),
         ),
       ),

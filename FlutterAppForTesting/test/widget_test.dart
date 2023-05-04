@@ -11,20 +11,30 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_app_for_testing/main.dart';
 
 void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
+  testWidgets('Finds Gesture Detector', (WidgetTester tester) async {
     // Build our app and trigger a frame.
     await tester.pumpWidget(const MyApp());
+    expect(find.bySemanticsLabel("/ClickTestScreenBugs"), findsOneWidget);
+    await tester.tap(find.bySemanticsLabel("/ClickTestScreenBugs"));
+    await tester.pumpAndSettle();
+    expect(find.bySemanticsLabel("GestureDetectorTest"), findsOneWidget);
+  });
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+  testWidgets('Finds InkWell', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp());
+    expect(find.bySemanticsLabel("/ClickTestScreenBugs"), findsOneWidget);
+    await tester.tap(find.bySemanticsLabel("/ClickTestScreenBugs"));
+    await tester.pumpAndSettle();
+    expect(find.bySemanticsLabel("InkWellParent"), findsOneWidget);
+  });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
-
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+  testWidgets('Finds IconButtonParent', (WidgetTester tester) async {
+    // Build our app and trigger a frame.
+    await tester.pumpWidget(const MyApp());
+    expect(find.bySemanticsLabel("/ClickTestScreenBugs"), findsOneWidget);
+    await tester.tap(find.bySemanticsLabel("/ClickTestScreenBugs"));
+    await tester.pumpAndSettle();
+    expect(find.bySemanticsLabel("InkWellParent"), findsOneWidget);
   });
 }

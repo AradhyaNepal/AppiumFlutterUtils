@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app_for_testing/screens/click_test/click_test_screen.dart';
 import 'package:flutter_app_for_testing/screens/home/widgets/navigation_widget.dart';
 
+import '../click_test/click_test_screen_bugs.dart';
+
 class HomeScreen extends StatelessWidget {
   static const String route="/";
   static const String heading="HomeScreen";
@@ -27,6 +29,10 @@ class HomeScreen extends StatelessWidget {
                 NavigationWidget(
                     heading: ClickTestScreen.heading,
                     route: ClickTestScreen.route,
+                ),
+                NavigationWidget(
+                    heading: ClickTestScreenBugs.heading,
+                    route: ClickTestScreenBugs.route,
                 ),
               ],
             ),
