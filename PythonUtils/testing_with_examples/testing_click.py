@@ -252,31 +252,31 @@ def testing_text_button_semantic(_):
     reset()
     click("TextButton")
     assert finds_some_widgets(
-        UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.BY_SEMANTIC_LABEL"
+        UtilsSetup.finder.by_text("Output is TextButtonClick"))
 
 
 def testing_text_button_id(_):
     reset()
     click("text-button", how_to_click=HowToClick.BY_VALUE_KEY)
-    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.BY_VALUE_KEY"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick"))
 
 
 def testing_text_button_text(_):
     reset()
     click("TextButton", how_to_click=HowToClick.BY_TEXT)
-    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.BY_TEXT"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick"))
 
 
 def testing_text_button_type(_):
     reset()
     click("TextButton", how_to_click=HowToClick.BY_TYPE)
-    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.BY_TYPE"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick"))
 
 
 def testing_text_button(_):
     reset()
     click("TextButton", how_to_click=HowToClick.TEXT_BUTTON)
-    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.TEXT_BUTTON"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonClick"))
 
 
 def group_icon_button():
@@ -299,20 +299,20 @@ def testing_icon_button_semantic(_):
     # View this issue :https://github.com/flutter/flutter/issues/126059
     reset()
     click("IconButton", )
-    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is IconButton")), "HowToClick.BY_SEMANTIC_LABEL"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is IconButton"))
 
 
 def testing_icon_button_id(_):
     reset()
     click("icon-button", how_to_click=HowToClick.BY_VALUE_KEY)
-    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is IconButton")), "HowToClick.BY_VALUE_KEY"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is IconButton"))
 
 
 def testing_icon_button_type(_):
     # Less critical bug, so ignroed
     reset()
     click("IconButton", how_to_click=HowToClick.BY_TYPE)
-    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is IconButton")), "HowToClick.BY_TYPE"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is IconButton"))
 
 
 def group_floating_action():
@@ -338,26 +338,26 @@ def testing_floating_semantic(_):
     reset()
     click("FloatingActionButton", )
     assert finds_some_widgets(
-        UtilsSetup.finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_SEMANTIC_LABEL"
+        UtilsSetup.finder.by_text("Output is FloatingActionButton"))
 
 
 def testing_floating_id(_):
     reset()
     click("floating-action-button", how_to_click=HowToClick.BY_VALUE_KEY)
-    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_VALUE_KEY"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is FloatingActionButton"))
 
 
 def testing_floating_type(_):
     reset()
     click("FloatingActionButton", how_to_click=HowToClick.BY_TYPE)
-    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_TYPE"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is FloatingActionButton"))
 
 
 def testing_floating(_):
     reset()
     click("FloatingActionButton", how_to_click=HowToClick.FLOATING_ACTION_BUTTON)
     assert finds_some_widgets(
-        UtilsSetup.finder.by_text("Output is FloatingActionButton")), "HowToClick.FLOATING_ACTION_BUTTON"
+        UtilsSetup.finder.by_text("Output is FloatingActionButton"))
 
 
 def group_hard_core():
@@ -386,7 +386,7 @@ def testing_simple_ancestor(_):
         UtilsSetup.finder.by_type("ElevatedButton"),
     ), how_to_click=HowToClick.HARD_CODED)
     assert finds_some_widgets(
-        UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL"
+        UtilsSetup.finder.by_text("Output is ElevatedButton"))
 
 
 def testing_complex_ancestor(_):
@@ -396,7 +396,7 @@ def testing_complex_ancestor(_):
         UtilsSetup.finder.by_type("ElevatedButton"),
     ), how_to_click=HowToClick.HARD_CODED)
     assert finds_some_widgets(
-        UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL"
+        UtilsSetup.finder.by_text("Output is ElevatedButton"))
 
 
 def testing_simple_descendant(_):
@@ -409,7 +409,7 @@ def testing_simple_descendant(_):
         how_to_click=HowToClick.HARD_CODED,
     )
     assert finds_some_widgets(
-        UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL"
+        UtilsSetup.finder.by_text("Output is ElevatedButton"))
 
 
 def testing_complex_descendant(_):
@@ -422,7 +422,7 @@ def testing_complex_descendant(_):
         how_to_click=HowToClick.HARD_CODED,
     )
     assert finds_some_widgets(
-        UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL"
+        UtilsSetup.finder.by_text("Output is ElevatedButton"))
 
 
 def reset():
@@ -431,7 +431,7 @@ def reset():
 
 
 def finds_reset_output():
-    assert finds_some_widgets(UtilsSetup.finder.by_text("No Output")), "Finds No Output"
+    assert finds_some_widgets(UtilsSetup.finder.by_text("No Output"))
 
 
 if __name__ == "__main__":

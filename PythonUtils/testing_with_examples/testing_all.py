@@ -5,6 +5,8 @@ from appium_flutter_finder import FlutterFinder, FlutterElement
 import traceback
 from appium_flutter_report import *
 from testing_click import group_testing_click
+from testing_double_click import group_testing_double_click
+from testing_long_click import group_testing_long_click
 
 
 def main():
@@ -16,7 +18,23 @@ def main():
         "Testing Click",
         group_testing_click,
     )
+    __go_back()
+    group(
+        "Testing Double Click",
+        group_testing_double_click,
+    )
+    __go_back()
+    group(
+        "Testing Long Click",
+        group_testing_long_click,
+    )
     FlutterReportGenerator.generate_report()
+
+
+def __go_back():
+    UtilsSetup.driver.switch_to.context("NATIVE_APP")
+    UtilsSetup.driver.back()
+    UtilsSetup.driver.switch_to.context("FLUTTER")
 
 
 if __name__ == "__main__":

@@ -1,3 +1,5 @@
+import time
+
 from setup import UtilsSetup
 from appium_flutter_finder import FlutterFinder, FlutterElement
 from appium import webdriver
@@ -37,13 +39,13 @@ def double_click(value: str, how_to_click: int = HowToClick.BY_SEMANTIC_LABEL):
     __click(value, __ClickType.DOUBLE_CLICK, 0, how_to_click)
 
 
-def long_click(value: str, how_to_click: int = HowToClick.BY_SEMANTIC_LABEL, duration: int = 0, ):
+def long_click(value: str, how_to_click: int = HowToClick.BY_SEMANTIC_LABEL, duration: int = 1000, ):
     if how_to_click == HowToClick.ELEVATED_BUTTON or how_to_click == HowToClick.FLOATING_ACTION_BUTTON:
         raise "Cannot Long Tap"
     __click(value, __ClickType.LONG_CLICK, duration, how_to_click)
 
 
-def __click(value: str, click_type: int, duration: int = None,
+def __click(value: str, click_type: int, duration: int = 1000,
             how_to_click: int = HowToClick.BY_SEMANTIC_LABEL):
     match how_to_click:
         case HowToClick.ELEVATED_BUTTON:
@@ -115,7 +117,7 @@ def __find_by_text_of_specific_button(value: str, type_of_button: str) -> str:
     )
 
 
-def __click_if_element_found(finder: str, click_type: int = __ClickType.CLICK, duration: int = None):
+def __click_if_element_found(finder: str, click_type: int = __ClickType.CLICK, duration: int = 1000):
     if finds_some_widgets(finder) is False:
         raise "Cannot not find specific one widget to click"
     if finds_is_tappable(finder) is False:
@@ -124,10 +126,14 @@ def __click_if_element_found(finder: str, click_type: int = __ClickType.CLICK, d
         case __ClickType.CLICK:
             FlutterElement(UtilsSetup.driver, finder).click()
         case __ClickType.DOUBLE_CLICK:
-            TouchAction(UtilsSetup.driver).tap(FlutterElement(UtilsSetup.driver, finder), count=2).perform()
+            element = FlutterElement(UtilsSetup.driver, finder)
+            element.click()
+            time.sleep(0.05)
+            element.click()
         case __ClickType.LONG_CLICK:
-            if duration is None:
-                TouchAction(UtilsSetup.driver).long_press(FlutterElement(UtilsSetup.driver, finder)).perform()
-            else:
-                TouchAction(UtilsSetup.driver).long_press(FlutterElement(UtilsSetup.driver, finder),
-                                                          duration=duration).perform()
+            TouchAction(UtilsSetup.driver).long_press(FlutterElement(UtilsSetup.driver, finder)).wait(
+                duration).release().perform()
+            # UtilsSetup.driver.execute_script('flutter:longTap', finder, dict(
+            #     durationMilliseconds=duration,
+            #     frequency=30
+            # ))
