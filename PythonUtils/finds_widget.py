@@ -4,7 +4,7 @@ from setup import UtilsSetup
 
 def finds_some_widgets(finder: str) -> bool:
     try:
-        UtilsSetup.driver.execute_script('flutter:waitFor', finder, 1000)
+        UtilsSetup.driver.execute_script('flutter:waitFor', finder, 1250)
         return True
     except Exception as e:
         print(e)

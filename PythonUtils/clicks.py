@@ -6,18 +6,19 @@ from finds_widget import *
 
 
 class HowToClick:
-    ELEVATED_BUTTON_TEXT = 1
-    ELEVATED_BUTTON_ITEM = 12
-    GESTURE_DETECTOR_TEXT = 2
-    GESTURE_DETECTOR_ITEM = 11
-    INKWELL_TEXT = 3
-    INKWELL_ITEM = 12
+    ELEVATED_BUTTON = 1
+    GESTURE_DETECTOR = 2
+    INKWELL = 3
     FLOATING_ACTION_BUTTON = 4
     TEXT_BUTTON = 5
-    BY_VALUE_KEY = 7
-    BY_TYPE = 8
-    BY_TEXT = 9
-    BY_SEMANTIC_LABEL = 10  # Default and recommended
+    BY_VALUE_KEY = 6
+    BY_TYPE = 7
+    BY_TEXT = 8
+    # If semantics causes some error, in Semantic Widget do :
+    # excludeSemantics: true or explicitChildNodes:true depending on scenario,
+    # View this issue :https://github.com/flutter/flutter/issues/126059
+    BY_SEMANTIC_LABEL = 9  # Default and recommended
+    HARD_CODED = 10
 
 
 class __ClickType:
@@ -26,118 +27,91 @@ class __ClickType:
     LONG_CLICK = 3
 
 
-def click(value: str, how_to_click: HowToClick = HowToClick.BY_SEMANTIC_LABEL, from_parent_finder: str = None, ):
-    __click(value, __ClickType.CLICK, 0, how_to_click, from_parent_finder)
+def click(value: str, how_to_click: int = HowToClick.BY_SEMANTIC_LABEL):
+    __click(value, __ClickType.CLICK, 0, how_to_click)
 
 
-def double_click(value: str, how_to_click: HowToClick = HowToClick.BY_SEMANTIC_LABEL, from_parent_finder: str = None, ):
-    if how_to_click == HowToClick.ELEVATED_BUTTON_TEXT or how_to_click == HowToClick.TEXT_BUTTON or how_to_click == HowToClick.FLOATING_ACTION_BUTTON:
+def double_click(value: str, how_to_click: int = HowToClick.BY_SEMANTIC_LABEL):
+    if how_to_click == HowToClick.ELEVATED_BUTTON or how_to_click == HowToClick.TEXT_BUTTON or how_to_click == HowToClick.FLOATING_ACTION_BUTTON:
         raise "Cannot Double Tap"
-    __click(value, __ClickType.DOUBLE_CLICK, 0, how_to_click, from_parent_finder)
+    __click(value, __ClickType.DOUBLE_CLICK, 0, how_to_click)
 
 
-def long_click(value: str, how_to_click: HowToClick = HowToClick.BY_SEMANTIC_LABEL, duration: int = 0,
-               from_parent_finder: str = None, ):
-    if how_to_click == HowToClick.ELEVATED_BUTTON_TEXT or how_to_click == HowToClick.FLOATING_ACTION_BUTTON:
+def long_click(value: str, how_to_click: int = HowToClick.BY_SEMANTIC_LABEL, duration: int = 0, ):
+    if how_to_click == HowToClick.ELEVATED_BUTTON or how_to_click == HowToClick.FLOATING_ACTION_BUTTON:
         raise "Cannot Long Tap"
-    __click(value, __ClickType.LONG_CLICK, duration, how_to_click, from_parent_finder)
+    __click(value, __ClickType.LONG_CLICK, duration, how_to_click)
 
 
 def __click(value: str, click_type: int, duration: int = None,
-            how_to_click: HowToClick = HowToClick.BY_SEMANTIC_LABEL, from_parent_finder: str = None, ):
+            how_to_click: int = HowToClick.BY_SEMANTIC_LABEL):
     match how_to_click:
-        case HowToClick.ELEVATED_BUTTON_TEXT:
+        case HowToClick.ELEVATED_BUTTON:
             __click_if_element_found(
-                __find_by_text_of_specific_type_of_button_and_from_specific_parent(value, "ElevatedButton",
-                                                                                   from_parent_finder),
+                __find_by_text_of_specific_button(value, "ElevatedButton"),
                 duration=duration,
                 click_type=click_type,
             )
-        case HowToClick.GESTURE_DETECTOR_TEXT:
+        case HowToClick.GESTURE_DETECTOR:
             __click_if_element_found(
-                __find_by_text_of_specific_type_of_button_and_from_specific_parent(value, "GestureDetector",
-                                                                                   from_parent_finder),
+                __find_by_text_of_specific_button(value, "GestureDetector"),
                 duration=duration,
                 click_type=click_type,
             )
-        case HowToClick.INKWELL_TEXT:
+        case HowToClick.INKWELL:
             __click_if_element_found(
-                __find_by_text_of_specific_type_of_button_and_from_specific_parent(value, "InkWell",
-                                                                                   from_parent_finder),
+                __find_by_text_of_specific_button(value, "InkWell"),
                 duration=duration,
                 click_type=click_type,
             )
         case HowToClick.FLOATING_ACTION_BUTTON:
             __click_if_element_found(
-                __find_from_specific_parent(
-                    UtilsSetup.finder.by_type("FloatingActionButton"),
-                    from_parent_finder,
-                ),
+                UtilsSetup.finder.by_type("FloatingActionButton"),
                 duration=duration,
                 click_type=click_type,
             )
         case HowToClick.TEXT_BUTTON:
             __click_if_element_found(
-                __find_by_text_of_specific_type_of_button_and_from_specific_parent(value, "TextButton",
-                                                                                   from_parent_finder),
+                __find_by_text_of_specific_button(value, "TextButton", ),
                 duration=duration,
                 click_type=click_type,
             )
         case HowToClick.BY_VALUE_KEY:
             __click_if_element_found(
-                __find_from_specific_parent(
-                    UtilsSetup.finder.by_value_key(value),
-                    from_parent_finder,
-                ),
+                UtilsSetup.finder.by_value_key(value),
                 duration=duration,
                 click_type=click_type,
             )
         case HowToClick.BY_TYPE:
             __click_if_element_found(
-                __find_from_specific_parent(
-                    UtilsSetup.finder.by_type(value),
-                    from_parent_finder,
-                ),
+                UtilsSetup.finder.by_type(value),
                 duration=duration,
                 click_type=click_type,
             )
         case HowToClick.BY_TEXT:
             __click_if_element_found(
-                __find_from_specific_parent(
-                    UtilsSetup.finder.by_text(value),
-                    from_parent_finder,
-                ),
+                UtilsSetup.finder.by_text(value),
                 duration=duration,
                 click_type=click_type,
             )
         case HowToClick.BY_SEMANTIC_LABEL:
             __click_if_element_found(
-                __find_from_specific_parent(
-                    UtilsSetup.finder.by_semantics_label(value),
-                    from_parent_finder,
-                ),
+                UtilsSetup.finder.by_semantics_label(value),
+                duration=duration,
+                click_type=click_type,
+            )
+        case HowToClick.HARD_CODED:
+            __click_if_element_found(
+                value,
                 duration=duration,
                 click_type=click_type,
             )
 
 
-def __find_by_text_of_specific_type_of_button_and_from_specific_parent(value: str, type_of_button: str,
-                                                                       from_parent_finder: str) -> str:
-    return __find_from_specific_parent(
-        UtilsSetup.finder.by_descendant(
-            UtilsSetup.finder.by_type(type_of_button),
-            UtilsSetup.finder.by_text(value),
-        ),
-        from_parent_finder,
-    )
-
-
-def __find_from_specific_parent(child_finder: str, from_parent_finder: str) -> str:
-    if from_parent_finder is None:
-        return child_finder
+def __find_by_text_of_specific_button(value: str, type_of_button: str) -> str:
     return UtilsSetup.finder.by_descendant(
-        from_parent_finder,
-        child_finder,
+        UtilsSetup.finder.by_type(type_of_button),
+        UtilsSetup.finder.by_text(value),
     )
 
 

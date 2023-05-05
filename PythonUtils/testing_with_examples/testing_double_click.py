@@ -44,7 +44,7 @@ def testing_click_on_gesture_detector(driver, finder):
         double_click("GestureDetector", how_to_click=HowToClick.BY_TYPE)
         assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_TYPE"
         reset(driver, finder)
-        double_click("GestureDetector", how_to_click=HowToClick.GESTURE_DETECTOR_TEXT)
+        double_click("GestureDetector", how_to_click=HowToClick.GESTURE_DETECTOR)
         assert finds_some_widgets(finder.by_text("Output is GestureDetectorClick")), "HowToClick.GESTURE_DETECTOR"
         reset(driver, finder)
     except Exception as e:
@@ -70,7 +70,7 @@ def testing_click_on_ink_well(driver, finder):
         double_click("InkWell", how_to_click=HowToClick.BY_TYPE)
         assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.BY_TYPE"
         reset(driver, finder)
-        double_click("InkWell", how_to_click=HowToClick.INKWELL_TEXT)
+        double_click("InkWell", how_to_click=HowToClick.INKWELL)
         assert finds_some_widgets(finder.by_text("Output is InkWellClick")), "HowToClick.INKWELL"
         reset(driver, finder)
     except Exception as e:

@@ -10,16 +10,20 @@ class TestInkWellSemantics extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Semantics(
-        label: "InkWell",
-        child: const InkWell(
-          child: Text("InkWell"),
+      home: Scaffold(
+        body: Semantics(
+          label: "InkWell",
+          // explicitChildNodes: true,
+          // container: true,
+          excludeSemantics: true,
+          child: const InkWell(
+            child: Text("InkWell"),
+          ),
         ),
       ),
     );
   }
 }
-
 
 class TestInkWellSemanticsInsteadContainer extends StatelessWidget {
   const TestInkWellSemanticsInsteadContainer({Key? key}) : super(key: key);

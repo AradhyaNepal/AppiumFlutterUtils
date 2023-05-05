@@ -10,10 +10,13 @@ class TestGestureDetectorSemantics extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Semantics(
-        label: "GestureDetector",
-        child: GestureDetector(
-          child: const Text("GestureDetector2"),
+      home: Scaffold(
+        body: Semantics(
+          explicitChildNodes: true,
+          label: "GestureDetector",
+          child: GestureDetector(
+            child: const Text("GestureDetector2"),
+          ),
         ),
       ),
     );

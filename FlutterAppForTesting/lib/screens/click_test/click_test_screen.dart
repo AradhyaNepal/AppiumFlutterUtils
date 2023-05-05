@@ -28,14 +28,14 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
             actions: [
               IconButton(
                 key: const ValueKey("reset"),
-                  onPressed: (){
-                    setState(() {
-                      outputBox="";
-                    });
-                  },
-                  icon: const Icon(
-                    Icons.lock_reset,
-                  ),
+                onPressed: () {
+                  setState(() {
+                    outputBox = "";
+                  });
+                },
+                icon: const Icon(
+                  Icons.lock_reset,
+                ),
               )
             ],
           ),
@@ -56,7 +56,7 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                 height: 10,
               ),
               Text(
-                outputBox.isEmpty?"No Output":"Output is $outputBox",
+                outputBox.isEmpty ? "No Output" : "Output is $outputBox",
                 key: const ValueKey("output-box"),
                 semanticsLabel: "OutputBox",
               ),
@@ -71,7 +71,7 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                   child: Column(
                     children: [
                       Semantics(
-                        label: "ElevatedButtonParent",
+                        label: "ElevatedButton",
                         child: ElevatedButton(
                           key: const ValueKey("elevated-button"),
                           onPressed: () {
@@ -79,32 +79,18 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                           },
                           child: Semantics(
                             label: "ElevatedButtonChild",
-                            child: const Text("ElevatedButton"),
+                              child: const Text("ElevatedButton"),
                           ),
                         ),
                       ),
                       const SizedBox(
                         height: 40,
                       ),
-                      GestureDetector(
-                        key: const ValueKey("gesture-detector"),
-                        onTap: () {
-                          updateOutput("GestureDetectorClick");
-                        },
-                        onDoubleTap: () {
-                          updateOutput("GestureDetectorDoubleClick");
-                        },
-                        onLongPress: () {
-                          updateOutput("GestureDetectorLongClick");
-                        },
-                        child: const Text("GestureDetector"),
-                      ),
-                      const SizedBox(
-                        height: 40,
-                      ),
                       Semantics(
+                        explicitChildNodes: true,
                         label: "GestureDetectorTest",
                         child: GestureDetector(
+                          key: const ValueKey("gesture-detector"),
                           onTap: () {
                             updateOutput("GestureDetectorClick");
                           },
@@ -114,17 +100,15 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                           onLongPress: () {
                             updateOutput("GestureDetectorLongClick");
                           },
-                          child: Semantics(
-                            label: "GestureDetectorChild",
-                            child: const Text("GestureDetector2"),
-                          ),
+                          child: const Text("GestureDetector"),
                         ),
                       ),
                       const SizedBox(
                         height: 40,
                       ),
                       Semantics(
-                        label: "InkWellParent",
+                        label: "InkWell",
+                        excludeSemantics: true,
                         child: InkWell(
                           key: const ValueKey("ink-well"),
                           onTap: () {
@@ -136,17 +120,15 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                           onLongPress: () {
                             updateOutput("InkWellLongClick");
                           },
-                          child: Semantics(
-                            label: "InkWellChild",
-                            child: const Text("InkWell"),
-                          ),
+                          child: const Text("InkWell"),
                         ),
                       ),
                       const SizedBox(
                         height: 10,
                       ),
                       Semantics(
-                        label: "TextButtonParent",
+                        label: "TextButton",
+                        excludeSemantics: true,
                         child: TextButton(
                           key: const ValueKey("text-button"),
                           onPressed: () {
@@ -155,14 +137,13 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                           onLongPress: () {
                             updateOutput("TextButtonLongClick");
                           },
-                          child: Semantics(
-                            label: "TextButtonChild",
-                            child: const Text("TextButton"),
-                          ),
+                          child: const Text("TextButton"),
                         ),
                       ),
                       Semantics(
-                        label: "IconButtonParent",
+                        label: "IconButton",
+                        // container: true,
+                        explicitChildNodes: true,
                         child: IconButton(
                           key: const ValueKey("icon-button"),
                           onPressed: () {
@@ -170,7 +151,6 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
                           },
                           icon: const Icon(
                             Icons.ads_click,
-                            semanticLabel: "IconButtonChild",
                           ),
                         ),
                       ),
@@ -181,17 +161,14 @@ class _ClickTestScreenState extends State<ClickTestScreen> {
             ],
           ),
           floatingActionButton: Semantics(
-            label: "FloatingActionButtonParent",
+            label: "FloatingActionButton",
             child: FloatingActionButton(
               key: const ValueKey("floating-action-button"),
               onPressed: () {
                 updateOutput("FloatingActionButton");
               },
-              child: Semantics(
-                label: "FloatingActionButtonChild",
-                child: const Icon(
-                  Icons.touch_app,
-                ),
+              child: const Icon(
+                Icons.touch_app,
               ),
             ),
           ),

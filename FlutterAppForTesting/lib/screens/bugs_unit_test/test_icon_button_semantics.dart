@@ -10,14 +10,16 @@ class TestIconButtonSemantics extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: Semantics(
-        label: "IconButton",
-        child: IconButton(
-          onPressed: (){
+      home: Scaffold(
+        body: Semantics(
+          label: "IconButton",
+          child: IconButton(
+            onPressed: (){
 
-          },
-          icon: const Icon(
-            Icons.safety_divider,
+            },
+            icon: const Icon(
+              Icons.safety_divider,
+            ),
           ),
         ),
       ),

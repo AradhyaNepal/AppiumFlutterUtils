@@ -44,6 +44,10 @@ def group_testing_click():
         "Testing Floating Action Button",
         group_floating_action
     )
+    group(
+        "Testing Hard Coded",
+        group_hard_core,
+    )
 
 
 def init(_):
@@ -77,9 +81,9 @@ def group_elevated_button():
 
 def testing_elevated_semantic(_):
     reset()
-    click("ElevatedButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
+    click("ElevatedButton", )
     assert finds_some_widgets(
-        UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
+        UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL"
 
 
 def testing_elevated_key(_):
@@ -102,7 +106,7 @@ def testing_elevated_type(_):
 
 def testing_elevated(_):
     reset()
-    click("ElevatedButton", how_to_click=HowToClick.ELEVATED_BUTTON_TEXT)
+    click("ElevatedButton", how_to_click=HowToClick.ELEVATED_BUTTON)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.ELEVATED_BUTTON "
 
 
@@ -130,11 +134,12 @@ def group_gesture_detector():
 
 
 def testing_gesture_detector_semantic(_):
-    # TODO: Critical Bug from flutter framework, reported the issue https://github.com/flutter/flutter/issues/126059
+    # Needs to do some setup in Semantic Widget: explicitChildNodes: true
+    # View this issue :https://github.com/flutter/flutter/issues/126059
     reset()
     click("GestureDetectorTest")
     assert finds_some_widgets(
-        finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_SEMANTIC_LABEL Child"
+        UtilsSetup.finder.by_text("Output is GestureDetectorClick")), "HowToClick.BY_SEMANTIC_LABEL Child"
 
 
 def testing_gesture_detector_key(_):
@@ -158,7 +163,7 @@ def testing_gesture_detector_type(_):
 
 def testing_gesture_detector(_):
     reset()
-    click("GestureDetector", how_to_click=HowToClick.GESTURE_DETECTOR_TEXT)
+    click("GestureDetector", how_to_click=HowToClick.GESTURE_DETECTOR)
     assert finds_some_widgets(
         UtilsSetup.finder.by_text("Output is GestureDetectorClick")), "HowToClick.GESTURE_DETECTOR"
 
@@ -188,10 +193,11 @@ def group_ink_well():
 
 def testing_ink_well_semantic(_):
     reset()
-    # TODO: Critical Bug from flutter framework, reported the issue https://github.com/flutter/flutter/issues/126059
-    click("InkWellParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
+    # Needs to do some setup in Semantic Widget: excludeSemantics: true,
+    # View this issue :https://github.com/flutter/flutter/issues/126059
+    click("InkWell", )
     assert finds_some_widgets(
-        UtilsSetup.finder.by_text("Output is InkWellClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
+        UtilsSetup.finder.by_text("Output is InkWellClick")), "HowToClick.BY_SEMANTIC_LABEL"
 
 
 def testing_ink_well_id(_):
@@ -215,7 +221,7 @@ def testing_ink_well_type(_):
 
 def testing_ink_well(_):
     reset()
-    click("InkWell", how_to_click=HowToClick.INKWELL_TEXT)
+    click("InkWell", how_to_click=HowToClick.INKWELL)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellClick")), "HowToClick.INKWELL"
 
 
@@ -244,9 +250,9 @@ def group_text_button():
 
 def testing_text_button_semantic(_):
     reset()
-    click("TextButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
+    click("TextButton")
     assert finds_some_widgets(
-        UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.BY_SEMANTIC_LABEL Parent"
+        UtilsSetup.finder.by_text("Output is TextButtonClick")), "HowToClick.BY_SEMANTIC_LABEL"
 
 
 def testing_text_button_id(_):
@@ -289,10 +295,11 @@ def group_icon_button():
 
 
 def testing_icon_button_semantic(_):
-    # TODO: Critical Bug from flutter framework, reported the issue https://github.com/flutter/flutter/issues/126059
+    # Needs to do some setup in Semantic Widget: explicitChildNodes: true
+    # View this issue :https://github.com/flutter/flutter/issues/126059
     reset()
-    click("IconButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
-    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is IconButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
+    click("IconButton", )
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is IconButton")), "HowToClick.BY_SEMANTIC_LABEL"
 
 
 def testing_icon_button_id(_):
@@ -329,9 +336,9 @@ def group_floating_action():
 
 def testing_floating_semantic(_):
     reset()
-    click("FloatingActionButtonParent", how_to_click=HowToClick.BY_SEMANTIC_LABEL)
+    click("FloatingActionButton", )
     assert finds_some_widgets(
-        UtilsSetup.finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_SEMANTIC_LABEL Parent"
+        UtilsSetup.finder.by_text("Output is FloatingActionButton")), "HowToClick.BY_SEMANTIC_LABEL"
 
 
 def testing_floating_id(_):
@@ -351,6 +358,71 @@ def testing_floating(_):
     click("FloatingActionButton", how_to_click=HowToClick.FLOATING_ACTION_BUTTON)
     assert finds_some_widgets(
         UtilsSetup.finder.by_text("Output is FloatingActionButton")), "HowToClick.FLOATING_ACTION_BUTTON"
+
+
+def group_hard_core():
+    test(
+        "Testing Simple Ancestor",
+        testing_simple_ancestor,
+    )
+    test(
+        "Testing Complex Ancestor",
+        testing_complex_ancestor,
+    )
+    test(
+        "Testing Simple Descendant",
+        testing_simple_descendant,
+    )
+    test(
+        "Testing Complex Descendant",
+        testing_complex_descendant,
+    )
+
+
+def testing_simple_ancestor(_):
+    reset()
+    click(UtilsSetup.finder.by_ancestor(
+        UtilsSetup.finder.by_text("ElevatedButton"),
+        UtilsSetup.finder.by_type("ElevatedButton"),
+    ), how_to_click=HowToClick.HARD_CODED)
+    assert finds_some_widgets(
+        UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL"
+
+
+def testing_complex_ancestor(_):
+    reset()
+    click(UtilsSetup.finder.by_ancestor(
+        UtilsSetup.finder.by_semantics_label("ElevatedButtonChild"),
+        UtilsSetup.finder.by_type("ElevatedButton"),
+    ), how_to_click=HowToClick.HARD_CODED)
+    assert finds_some_widgets(
+        UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL"
+
+
+def testing_simple_descendant(_):
+    reset()
+    click(
+        UtilsSetup.finder.by_descendant(
+            UtilsSetup.finder.by_type("ElevatedButton"),
+            UtilsSetup.finder.by_text("ElevatedButton")
+        ),
+        how_to_click=HowToClick.HARD_CODED,
+    )
+    assert finds_some_widgets(
+        UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL"
+
+
+def testing_complex_descendant(_):
+    reset()
+    click(
+        UtilsSetup.finder.by_descendant(
+            UtilsSetup.finder.by_type("Column"),
+            UtilsSetup.finder.by_type("ElevatedButton")
+        ),
+        how_to_click=HowToClick.HARD_CODED,
+    )
+    assert finds_some_widgets(
+        UtilsSetup.finder.by_text("Output is ElevatedButton")), "HowToClick.BY_SEMANTIC_LABEL"
 
 
 def reset():

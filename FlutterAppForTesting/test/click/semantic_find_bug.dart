@@ -6,6 +6,8 @@
 // tree, read text, and verify that the values of widget properties are correct.
 
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter_app_for_testing/main.dart';
 import 'package:flutter_app_for_testing/screens/bugs_unit_test/test_gesture_detector_semantics.dart';
 import 'package:flutter_app_for_testing/screens/bugs_unit_test/test_icon_button_semantics.dart';
 import 'package:flutter_app_for_testing/screens/bugs_unit_test/test_ink_well_semantics.dart';
@@ -51,6 +53,20 @@ void main() {
       await tester.pumpWidget(const TestInkWellSemanticsInsteadContainer());
       await tester.pumpAndSettle();
       expect(find.bySemanticsLabel("InkWell"), findsOneWidget);
+    });
+  });
+
+
+  group("Testing In Integrated Project", () {
+    testWidgets("Finds IconButton by semantics In Integrated Project", (tester)async {
+      await tester.pumpWidget(const MyApp());
+      expect(find.bySemanticsLabel("/ClickTestScreen"), findsOneWidget);
+      await tester.tap(find.bySemanticsLabel("/ClickTestScreen"));
+      await tester.pumpAndSettle();
+      expect(find.byKey(const ValueKey("reset")), findsOneWidget);
+      expect(find.bySemanticsLabel("IconButtonParent"), findsOneWidget);
+      expect(find.bySemanticsLabel("GestureDetectorTest"), findsOneWidget);
+      expect(find.bySemanticsLabel("InkWellParent"), findsOneWidget);
     });
   });
 
