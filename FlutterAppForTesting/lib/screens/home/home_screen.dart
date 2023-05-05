@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app_for_testing/screens/click_test/click_test_screen.dart';
 import 'package:flutter_app_for_testing/screens/home/widgets/navigation_widget.dart';
+import 'package:flutter_app_for_testing/screens/wait_test/wait_test_screen.dart';
 
 
 class HomeScreen extends StatelessWidget {
@@ -28,6 +29,10 @@ class HomeScreen extends StatelessWidget {
                 NavigationWidget(
                     heading: ClickTestScreen.heading,
                     route: ClickTestScreen.route,
+                ),
+                NavigationWidget(
+                    heading: WaitTestScreen.heading,
+                    route: WaitTestScreen.route,
                 ),
               ],
             ),
