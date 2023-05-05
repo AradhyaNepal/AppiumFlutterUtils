@@ -4,7 +4,7 @@ import traceback
 
 class HowToWait:
     BY_VALUE_KEY = 1
-    BY_TYPE = 2 # Default
+    BY_TYPE = 2  # Default
     BY_TEXT = 3
     # If semantics causes some error, in Semantic Widget do :
     # excludeSemantics: true or explicitChildNodes:true depending on scenario,
@@ -13,17 +13,17 @@ class HowToWait:
     HARD_CODED = 5
 
 
-def wait(value: str, how_to_wait: int = HowToWait.BY_TYPE, duration: int = 5000)->bool:
+def wait(value: str, how_to_wait: int = HowToWait.BY_TYPE, duration: int = 5000) -> bool:
     print("Waiting For '" + value + "' : To Be Found.")
     return __wait(value, duration, False, how_to_wait)
 
 
-def wait_for_absence(value: str, how_to_wait: int = HowToWait.BY_TYPE, duration: int = 5000)->bool:
+def wait_for_absence(value: str, how_to_wait: int = HowToWait.BY_TYPE, duration: int = 5000) -> bool:
     print("Waiting For '" + value + "' : Not To Be Found.")
     return __wait(value, duration, True, how_to_wait)
 
 
-def __wait(value: str, duration: int, for_absence: bool, how_to_wait: int = HowToWait.BY_TYPE)->bool:
+def __wait(value: str, duration: int, for_absence: bool, how_to_wait: int = HowToWait.BY_TYPE) -> bool:
     finder = __get_finder(how_to_wait, value)
     try:
         if for_absence:
@@ -34,6 +34,7 @@ def __wait(value: str, duration: int, for_absence: bool, how_to_wait: int = HowT
         return True
     except Exception as e:
         print("Error: Waiting For " + value + " Timeout")
+        print("For Absence:" + str(for_absence))
         print("\n\n")
         print(e)
         print(traceback.format_exc())

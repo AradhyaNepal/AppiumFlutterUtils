@@ -7,6 +7,7 @@ from appium_flutter_report import *
 from testing_click import group_testing_click
 from testing_double_click import group_testing_double_click
 from testing_long_click import group_testing_long_click
+from  testing_wait import group_testing_wait
 
 
 def main():
@@ -27,6 +28,10 @@ def main():
     group(
         "Testing Long Click",
         group_testing_long_click,
+    )
+    group(
+        "Testing Wait",
+        group_testing_wait,
     )
     FlutterReportGenerator.generate_report()
 

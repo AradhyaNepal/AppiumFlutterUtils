@@ -81,9 +81,9 @@ def testing_wait_for_value_key(_):
 
 
 def testing_wait_absence_for_value_key(_):
-    click("Reset")
-    if finds_some_widgets(UtilsSetup.finder.by_value_key(by_value_key)) is False:
+    if finds_some_widgets(UtilsSetup.finder.by_value_key("by_value_key")) is False:
         raise "Cannot find element for which we were waiting"
+    click("Reset")
     do_not_find_element_after_wait = wait_for_absence("by_value_key", HowToWait.BY_VALUE_KEY)
     assert do_not_find_element_after_wait
 
@@ -95,40 +95,39 @@ def testing_wait_for_type(_):
 
 
 def testing_wait_absence_for_type(_):
-    click("Reset")
     if finds_some_widgets(UtilsSetup.finder.by_type("ByTypeWidget")) is False:
         raise "Cannot find element for which we were waiting"
+    click("Reset")
     do_not_find_element_after_wait = wait_for_absence("ByTypeWidget")
     assert do_not_find_element_after_wait
 
 
 def testing_wait_for_text(_):
     click("ByText")
-    find_element_after_wait = wait("ByText", HowToWait.BY_TEXT)
+    find_element_after_wait = wait("ByTextOutput", HowToWait.BY_TEXT)
     assert find_element_after_wait
 
 
 def testing_wait_absence_for_text(_):
-    click("Reset")
-    if finds_some_widgets(UtilsSetup.finder.by_text("ByText")) is False:
+    if finds_some_widgets(UtilsSetup.finder.by_text("ByTextOutput")) is False:
         raise "Cannot find element for which we were waiting"
-    do_not_find_element_after_wait = wait_for_absence("ByText", HowToWait.BY_TEXT)
+    click("Reset")
+    do_not_find_element_after_wait = wait_for_absence("ByTextOutput", HowToWait.BY_TEXT)
     assert do_not_find_element_after_wait
 
 
 def testing_wait_for_semantic(_):
     click("BySemanticLabel")
     find_element_after_wait = wait("BySemanticLabelOutput", HowToWait.BY_SEMANTIC_LABEL)
-    assert find_element_after_wait is False
-    time.sleep(0.5)
+    assert find_element_after_wait
 
 
 def testing_wait_absence_for_semantic(_):
-    click("Reset")
     if finds_some_widgets(UtilsSetup.finder.by_semantics_label("BySemanticLabelOutput")) is False:
         raise "Cannot find element for which we were waiting"
+    click("Reset")
     do_not_find_element_after_wait = wait_for_absence("BySemanticLabelOutput", HowToWait.BY_SEMANTIC_LABEL)
-    assert do_not_find_element_after_wait is False
+    assert do_not_find_element_after_wait
 
 
 def get_hard_coded() -> str:
@@ -148,9 +147,9 @@ def testing_wait_for_hard_coded(_):
 
 
 def testing_wait_absence_for_hard_coded(_):
-    click("Reset")
     if finds_some_widgets(get_hard_coded()) is False:
         raise "Cannot find element for which we were waiting"
+    click("Reset")
     do_not_find_element_after_wait = wait_for_absence(get_hard_coded(), HowToWait.HARD_CODED)
     assert do_not_find_element_after_wait
 
@@ -158,30 +157,22 @@ def testing_wait_absence_for_hard_coded(_):
 def testing_wait_timeout(_):
     click("TimeOut")
     find_element_after_wait = wait("TimeOutOutput", HowToWait.BY_SEMANTIC_LABEL)
-    assert find_element_after_wait
+    assert find_element_after_wait is False
+    time.sleep(0.5)
 
 
 def testing_absence_timeout(_):
-    click("Reset")
     if finds_some_widgets(UtilsSetup.finder.by_semantics_label("TimeOutOutput")) is False:
         raise "Cannot find element for which we were waiting"
+    click("Reset")
     do_not_find_element_after_wait = wait_for_absence("TimeOutOutput", HowToWait.BY_SEMANTIC_LABEL)
-    assert do_not_find_element_after_wait
+    assert do_not_find_element_after_wait is False
 
 
 def init(_):
     FlutterElement(UtilsSetup.driver, UtilsSetup.finder.by_value_key("/WaitTestScreen")).click()
     UtilsSetup.driver.execute_script('flutter:waitFor', UtilsSetup.finder.by_type("WaitTestScreen"), 1500)
-    finds_reset_output()
-
-
-def reset():
-    FlutterElement(UtilsSetup.driver, UtilsSetup.finder.by_value_key("reset")).click()
-    finds_reset_output()
-
-
-def finds_reset_output():
-    assert finds_some_widgets(UtilsSetup.finder.by_semantics_label("ResetOutputBox"))
+    assert finds_some_widgets(UtilsSetup.finder.by_semantics_label("Reset"))
 
 
 if __name__ == "__main__":

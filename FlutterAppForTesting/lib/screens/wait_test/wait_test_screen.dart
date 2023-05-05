@@ -70,6 +70,8 @@ class _WaitTestScreenState extends State<WaitTestScreen> {
                     children: [
                       Semantics(
                         label: "ByValueKey",
+                        explicitChildNodes: true,
+                        excludeSemantics: true,
                         child: ElevatedButton(
                           onPressed: () {
                             updateOutput(const Text(
@@ -80,6 +82,8 @@ class _WaitTestScreenState extends State<WaitTestScreen> {
                       ),
                       Semantics(
                         label: "ByType",
+                        explicitChildNodes: true,
+                        excludeSemantics: true,
                         child: ElevatedButton(
                           onPressed: () {
                             updateOutput(const ByTypeWidget());
@@ -89,20 +93,24 @@ class _WaitTestScreenState extends State<WaitTestScreen> {
                       ),
                       Semantics(
                         label: "ByText",
+                        explicitChildNodes: true,
+                        excludeSemantics: true,
                         child: ElevatedButton(
                           onPressed: () {
-                            updateOutput(const Text("ByText"));
+                            updateOutput(const Text("ByTextOutput"));
                           },
                           child: const Text("ByText"),
                         ),
                       ),
                       Semantics(
                         label: "BySemanticLabel",
+                        explicitChildNodes: true,
+                        excludeSemantics: true,
                         child: ElevatedButton(
                           onPressed: () {
-                            updateOutput(Semantics(
-                              label: "BySemanticLabelOutput",
-                              child: const Text("ByText"),
+                            updateOutput(const Text(
+                                "BySemanticOutput",
+                                semanticsLabel: "BySemanticLabelOutput",
                             ));
                           },
                           child: const Text("By Semantic Output"),
@@ -110,18 +118,17 @@ class _WaitTestScreenState extends State<WaitTestScreen> {
                       ),
                       Semantics(
                         label: "ByHardCoded",
+                        explicitChildNodes: true,
+                        excludeSemantics: true,
                         child: ElevatedButton(
                           onPressed: () {
                             updateOutput(Column(
                               children: [
                                 const ByTypeWidget(),
                                 Row(
-                                  children: [
-                                    const ByTypeWidget(),
-                                    Semantics(
-                                      label: "ByHardCodedOutput",
-                                      child: const Text("ByHardCoded"),
-                                    ),
+                                  children: const [
+                                    ByTypeWidget(),
+                                    Text("ByHardCoded",semanticsLabel: "ByHardCodedOutput",),
                                   ],
                                 ),
                               ],
@@ -132,13 +139,12 @@ class _WaitTestScreenState extends State<WaitTestScreen> {
                       ),
                       Semantics(
                         label: "TimeOut",
+                        explicitChildNodes: true,
+                        excludeSemantics: true,
                         child: ElevatedButton(
                           onPressed: () {
                             updateOutput(
-                              Semantics(
-                                label: "TimeOutOutput",
-                                child: const Text("TimeOut"),
-                              ),
+                              const Text("TimeOut",semanticsLabel: "TimeOutOutput",),
                               true,
                             );
                           },
