@@ -15,9 +15,10 @@ class _ScrollMaterialScreenState extends State<ScrollMaterialScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size=MediaQuery.of(context).size;
     return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
+      height:size.height,
+      width: size.width,
       child: Scaffold(
         appBar: AppBar(
           actions: [
@@ -37,48 +38,62 @@ class _ScrollMaterialScreenState extends State<ScrollMaterialScreen> {
           scrollDirection: vertical ? Axis.vertical : Axis.horizontal,
           child: vertical
               ? Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
                     const Text(
                       "Start",
+                      textAlign:TextAlign.center,
                       key: ValueKey("start_key"),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 2,
+                      height: size.height * 2,
                     ),
                     const Text(
                       "Mid",
+                      textAlign:TextAlign.center,
                       key: ValueKey("mid_key"),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 2,
+                      height: size.height * 2,
                     ),
                     const Text(
                       "End",
+                      textAlign:TextAlign.center,
                       key: ValueKey("end_key"),
                     ),
                   ],
                 )
               : Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
-                    const Text(
-                      "Start",
-                      key: ValueKey("start_key"),
+                    const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Start",
+                        key: ValueKey("start_key"),
+                      ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.width * 2,
+                      width: size.width * 2,
                     ),
-                    const Text(
-                      "Mid",
-                      key: ValueKey("mid_key"),
+                    const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "Mid",
+                        textAlign:TextAlign.center,
+                        key: ValueKey("mid_key"),
+                      ),
                     ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.width * 2,
+                      width: size.width * 2,
                     ),
-                    const Text(
-                      "End",
-                      key: ValueKey("end_key"),
+                    const Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        "End",
+                        textAlign:TextAlign.center,
+                        key: ValueKey("end_key"),
+                      ),
                     ),
                   ],
                 ),

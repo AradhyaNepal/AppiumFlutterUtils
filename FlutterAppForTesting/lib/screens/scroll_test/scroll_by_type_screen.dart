@@ -14,35 +14,39 @@ class _ScrollByTypeScreenState extends State<ScrollByTypeScreen> {
   bool isListView = false;
   bool vertical = true;
 
-  late List<Widget> widgetList = [
-    const Text(
-      "Start",
-      key: ValueKey("start_key"),
-    ),
-    SizedBox(
-      height: (vertical
-              ? MediaQuery.of(context).size.height
-              : MediaQuery.of(context).size.width) *
-          2,
-    ),
-    const Text(
-      "Mid",
-      key: ValueKey("mid_key"),
-    ),
-    SizedBox(
-      height: (vertical
-              ? MediaQuery.of(context).size.height
-              : MediaQuery.of(context).size.width) *
-          2,
-    ),
-    const Text(
-      "End",
-      key: ValueKey("end_key"),
-    ),
-  ];
-
   @override
   Widget build(BuildContext context) {
+    List<Widget> widgetList = [
+      const Align(
+        alignment: Alignment.center,
+        child: Text(
+          "Start",
+          key: ValueKey("start_key"),
+        ),
+      ),
+      SizedBox(
+        height: (vertical ? MediaQuery.of(context).size.height : 0) * 2,
+        width: (vertical ? 0 : MediaQuery.of(context).size.width) * 2,
+      ),
+      const Align(
+        alignment: Alignment.center,
+        child: Text(
+          "Mid",
+          key: ValueKey("mid_key"),
+        ),
+      ),
+      SizedBox(
+        height: (vertical ? MediaQuery.of(context).size.height : 0) * 2,
+        width: (vertical ? 0 : MediaQuery.of(context).size.width) * 2,
+      ),
+      const Align(
+        alignment: Alignment.center,
+        child: Text(
+          "End",
+          key: ValueKey("end_key"),
+        ),
+      ),
+    ];
     return SizedBox(
       height: MediaQuery.of(context).size.height,
       width: MediaQuery.of(context).size.width,
@@ -80,11 +84,11 @@ class _ScrollByTypeScreenState extends State<ScrollByTypeScreen> {
                 scrollDirection: vertical ? Axis.vertical : Axis.horizontal,
                 child: vertical
                     ? Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: widgetList,
                       )
                     : Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
                         children: widgetList,
                       ),
               ),
