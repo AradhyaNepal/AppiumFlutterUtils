@@ -9,6 +9,7 @@ from testing_double_click import group_testing_double_click
 from testing_long_click import group_testing_long_click
 from testing_wait import group_testing_wait
 from testing_enter_text import group_testing_enter_text
+from testing_scroll import group_testing_scroll
 
 
 def main():
@@ -40,6 +41,11 @@ def main():
         "Testing Enter Text",
         group_testing_enter_text,
     )
+    __go_back()
+    # group(
+    #     "Testing Scroll",
+    #     group_testing_scroll,
+    # )
     FlutterReportGenerator.generate_report()
 
 
