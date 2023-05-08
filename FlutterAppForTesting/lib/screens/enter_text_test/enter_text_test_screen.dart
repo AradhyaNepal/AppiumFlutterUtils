@@ -56,7 +56,7 @@ class _EnterTextTestScreenState extends State<EnterTextTestScreen> {
                 height: 10,
               ),
               Text(
-                outputBox.isEmpty?"No Output":outputBox,
+                outputBox.isEmpty ? "No Output" : "Output is $outputBox",
                 key: const ValueKey("output-box"),
                 semanticsLabel: "OutputBox",
               ),
@@ -140,8 +140,10 @@ class ByTypeTextField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextField(
-      onChanged: onChanged,
+    return SizedBox(
+      child: TextField(
+        onChanged: onChanged,
+      ),
     );
   }
 }
@@ -192,8 +194,13 @@ class ByTypeTextFormField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TextFormField(
-      onChanged: onChanged,
+    return Padding(
+      padding: EdgeInsets.only(
+        left: MediaQuery.of(context).size.width/2,
+      ),
+      child: TextFormField(
+        onChanged: onChanged,
+      ),
     );
   }
 }

@@ -55,35 +55,51 @@ def group_testing_enter_text():
 
 
 def testing_label_text_field(_):
-    assert False
+    reset()
+    enter_text("ByLabelTextField", "ByLabelTextField")
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is ByLabelTextField"))
 
 
 def testing_label_text_form_field(_):
-    assert False
+    reset()
+    enter_text("ByLabelTextFormField", "ByLabelTextFormField")
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is ByLabelTextFormField"))
 
 
 def testing_key_text_field(_):
-    assert False
+    reset()
+    enter_text("by-value-key_text_field", "by-value-key_text_field", where_type=WhereType.BY_VALUE_KEY)
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is by-value-key_text_field"))
 
 
 def testing_key_text_form_field(_):
-    assert False
+    reset()
+    enter_text("by-value-key_text_form_field", "by-value-key_text_form_field", where_type=WhereType.BY_VALUE_KEY)
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is by-value-key_text_form_field"))
 
 
 def testing_type_text_field(_):
-    assert False
+    reset()
+    enter_text("ByTypeTextField", "ByTypeTextField", where_type=WhereType.BY_TYPE)
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is ByTypeTextField"))
 
 
 def testing_type_text_form_field(_):
-    assert False
+    reset()
+    enter_text("ByTypeTextFormField", "ByTypeTextFormField", where_type=WhereType.BY_TYPE)
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is ByTypeTextFormField"))
 
 
 def testing_semantic_text_field(_):
-    assert False
+    reset()
+    enter_text("BySemanticTextField", "BySemanticTextField", where_type=WhereType.BY_SEMANTIC_LABEL)
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is BySemanticTextField"))
 
 
 def testing_semantic_text_form_field(_):
-    assert False
+    reset()
+    enter_text("BySemanticTextFormField", "BySemanticTextFormField", where_type=WhereType.BY_SEMANTIC_LABEL)
+    assert finds_some_widgets(UtilsSetup.finder.by_text("Output is BySemanticTextFormField"))
 
 
 def init(_):
