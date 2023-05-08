@@ -76,7 +76,7 @@ def group_testing_wait():
 
 def testing_wait_for_value_key(_):
     click("ByValueKey")
-    find_element_after_wait = wait("by_value_key", HowToWait.BY_VALUE_KEY)
+    find_element_after_wait = wait("by_value_key", WhatToWait.BY_VALUE_KEY)
     assert find_element_after_wait
 
 
@@ -84,7 +84,7 @@ def testing_wait_absence_for_value_key(_):
     if finds_some_widgets(UtilsSetup.finder.by_value_key("by_value_key")) is False:
         raise "Cannot find element for which we were waiting"
     click("Reset")
-    do_not_find_element_after_wait = wait_for_absence("by_value_key", HowToWait.BY_VALUE_KEY)
+    do_not_find_element_after_wait = wait_for_absence("by_value_key", WhatToWait.BY_VALUE_KEY)
     assert do_not_find_element_after_wait
 
 
@@ -104,7 +104,7 @@ def testing_wait_absence_for_type(_):
 
 def testing_wait_for_text(_):
     click("ByText")
-    find_element_after_wait = wait("ByTextOutput", HowToWait.BY_TEXT)
+    find_element_after_wait = wait("ByTextOutput", WhatToWait.BY_TEXT)
     assert find_element_after_wait
 
 
@@ -112,13 +112,13 @@ def testing_wait_absence_for_text(_):
     if finds_some_widgets(UtilsSetup.finder.by_text("ByTextOutput")) is False:
         raise "Cannot find element for which we were waiting"
     click("Reset")
-    do_not_find_element_after_wait = wait_for_absence("ByTextOutput", HowToWait.BY_TEXT)
+    do_not_find_element_after_wait = wait_for_absence("ByTextOutput", WhatToWait.BY_TEXT)
     assert do_not_find_element_after_wait
 
 
 def testing_wait_for_semantic(_):
     click("BySemanticLabel")
-    find_element_after_wait = wait("BySemanticLabelOutput", HowToWait.BY_SEMANTIC_LABEL)
+    find_element_after_wait = wait("BySemanticLabelOutput", WhatToWait.BY_SEMANTIC_LABEL)
     assert find_element_after_wait
 
 
@@ -126,7 +126,7 @@ def testing_wait_absence_for_semantic(_):
     if finds_some_widgets(UtilsSetup.finder.by_semantics_label("BySemanticLabelOutput")) is False:
         raise "Cannot find element for which we were waiting"
     click("Reset")
-    do_not_find_element_after_wait = wait_for_absence("BySemanticLabelOutput", HowToWait.BY_SEMANTIC_LABEL)
+    do_not_find_element_after_wait = wait_for_absence("BySemanticLabelOutput", WhatToWait.BY_SEMANTIC_LABEL)
     assert do_not_find_element_after_wait
 
 
@@ -142,7 +142,7 @@ def get_hard_coded() -> str:
 
 def testing_wait_for_hard_coded(_):
     click("ByHardCoded")
-    find_element_after_wait = wait(get_hard_coded(), HowToWait.HARD_CODED)
+    find_element_after_wait = wait(get_hard_coded(), WhatToWait.HARD_CODED)
     assert find_element_after_wait
 
 
@@ -150,13 +150,13 @@ def testing_wait_absence_for_hard_coded(_):
     if finds_some_widgets(get_hard_coded()) is False:
         raise "Cannot find element for which we were waiting"
     click("Reset")
-    do_not_find_element_after_wait = wait_for_absence(get_hard_coded(), HowToWait.HARD_CODED)
+    do_not_find_element_after_wait = wait_for_absence(get_hard_coded(), WhatToWait.HARD_CODED)
     assert do_not_find_element_after_wait
 
 
 def testing_wait_timeout(_):
     click("TimeOut")
-    find_element_after_wait = wait("TimeOutOutput", HowToWait.BY_SEMANTIC_LABEL)
+    find_element_after_wait = wait("TimeOutOutput", WhatToWait.BY_SEMANTIC_LABEL)
     assert find_element_after_wait is False
     time.sleep(0.5)
 
@@ -165,7 +165,7 @@ def testing_absence_timeout(_):
     if finds_some_widgets(UtilsSetup.finder.by_semantics_label("TimeOutOutput")) is False:
         raise "Cannot find element for which we were waiting"
     click("Reset")
-    do_not_find_element_after_wait = wait_for_absence("TimeOutOutput", HowToWait.BY_SEMANTIC_LABEL)
+    do_not_find_element_after_wait = wait_for_absence("TimeOutOutput", WhatToWait.BY_SEMANTIC_LABEL)
     assert do_not_find_element_after_wait is False
 
 

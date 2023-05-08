@@ -70,26 +70,26 @@ def testing_gesture_detector_semantic(_):
 
 def testing_gesture_detector_key(_):
     reset()
-    double_click("gesture-detector", how_to_click=HowToClick.BY_VALUE_KEY)
+    double_click("gesture-detector", what_to_click=WhatToClick.BY_VALUE_KEY)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is GestureDetectorDoubleClick"))
 
 
 def testing_gesture_detector_text(_):
     reset()
-    double_click("GestureDetector", how_to_click=HowToClick.BY_TEXT)
+    double_click("GestureDetector", what_to_click=WhatToClick.BY_TEXT)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is GestureDetectorDoubleClick"))
 
 
 def testing_gesture_detector_type(_):
     reset()
     # Less critical bug so ignored
-    double_click("GestureDetector", how_to_click=HowToClick.BY_TYPE)
+    double_click("GestureDetector", what_to_click=WhatToClick.BY_TYPE)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is GestureDetectorDoubleClick"))
 
 
 def testing_gesture_detector(_):
     reset()
-    double_click("GestureDetector", how_to_click=HowToClick.GESTURE_DETECTOR)
+    double_click("GestureDetector", what_to_click=WhatToClick.GESTURE_DETECTOR)
     assert finds_some_widgets(
         UtilsSetup.finder.by_text("Output is GestureDetectorDoubleClick"))
 
@@ -128,26 +128,26 @@ def testing_ink_well_semantic(_):
 
 def testing_ink_well_id(_):
     reset()
-    double_click("ink-well", how_to_click=HowToClick.BY_VALUE_KEY)
+    double_click("ink-well", what_to_click=WhatToClick.BY_VALUE_KEY)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellDoubleClick"))
 
 
 def testing_ink_well_text(_):
     reset()
-    double_click("InkWell", how_to_click=HowToClick.BY_TEXT)
+    double_click("InkWell", what_to_click=WhatToClick.BY_TEXT)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellDoubleClick"))
 
 
 def testing_ink_well_type(_):
     reset()
     # Less critical bug, so ignored
-    double_click("InkWell", how_to_click=HowToClick.BY_TYPE)
+    double_click("InkWell", what_to_click=WhatToClick.BY_TYPE)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellDoubleClick"))
 
 
 def testing_ink_well(_):
     reset()
-    double_click("InkWell", how_to_click=HowToClick.INKWELL)
+    double_click("InkWell", what_to_click=WhatToClick.INKWELL)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellDoubleClick"))
 
 

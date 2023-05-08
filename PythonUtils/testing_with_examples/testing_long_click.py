@@ -74,26 +74,26 @@ def testing_gesture_detector_semantic(_):
 
 def testing_gesture_detector_key(_):
     reset()
-    long_click("gesture-detector", how_to_click=HowToClick.BY_VALUE_KEY)
+    long_click("gesture-detector", what_to_click=WhatToClick.BY_VALUE_KEY)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is GestureDetectorLongClick"))
 
 
 def testing_gesture_detector_text(_):
     reset()
-    long_click("GestureDetector", how_to_click=HowToClick.BY_TEXT)
+    long_click("GestureDetector", what_to_click=WhatToClick.BY_TEXT)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is GestureDetectorLongClick"))
 
 
 def testing_gesture_detector_type(_):
     reset()
     # Less critical bug so ignored
-    long_click("GestureDetector", how_to_click=HowToClick.BY_TYPE)
+    long_click("GestureDetector", what_to_click=WhatToClick.BY_TYPE)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is GestureDetectorLongClick"))
 
 
 def testing_gesture_detector(_):
     reset()
-    long_click("GestureDetector", how_to_click=HowToClick.GESTURE_DETECTOR)
+    long_click("GestureDetector", what_to_click=WhatToClick.GESTURE_DETECTOR)
     assert finds_some_widgets(
         UtilsSetup.finder.by_text("Output is GestureDetectorLongClick"))
 
@@ -132,26 +132,26 @@ def testing_ink_well_semantic(_):
 
 def testing_ink_well_id(_):
     reset()
-    long_click("ink-well", how_to_click=HowToClick.BY_VALUE_KEY)
+    long_click("ink-well", what_to_click=WhatToClick.BY_VALUE_KEY)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellLongClick"))
 
 
 def testing_ink_well_text(_):
     reset()
-    long_click("InkWell", how_to_click=HowToClick.BY_TEXT)
+    long_click("InkWell", what_to_click=WhatToClick.BY_TEXT)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellLongClick"))
 
 
 def testing_ink_well_type(_):
     reset()
     # Less critical bug, so ignored
-    long_click("InkWell", how_to_click=HowToClick.BY_TYPE)
+    long_click("InkWell", what_to_click=WhatToClick.BY_TYPE)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellLongClick"))
 
 
 def testing_ink_well(_):
     reset()
-    long_click("InkWell", how_to_click=HowToClick.INKWELL)
+    long_click("InkWell", what_to_click=WhatToClick.INKWELL)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is InkWellLongClick"))
 
 
@@ -187,25 +187,25 @@ def testing_text_button_semantic(_):
 
 def testing_text_button_id(_):
     reset()
-    long_click("text-button", how_to_click=HowToClick.BY_VALUE_KEY)
+    long_click("text-button", what_to_click=WhatToClick.BY_VALUE_KEY)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonLongClick"))
 
 
 def testing_text_button_text(_):
     reset()
-    long_click("TextButton", how_to_click=HowToClick.BY_TEXT)
+    long_click("TextButton", what_to_click=WhatToClick.BY_TEXT)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonLongClick"))
 
 
 def testing_text_button_type(_):
     reset()
-    long_click("TextButton", how_to_click=HowToClick.BY_TYPE)
+    long_click("TextButton", what_to_click=WhatToClick.BY_TYPE)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonLongClick"))
 
 
 def testing_text_button(_):
     reset()
-    long_click("TextButton", how_to_click=HowToClick.TEXT_BUTTON)
+    long_click("TextButton", what_to_click=WhatToClick.TEXT_BUTTON)
     assert finds_some_widgets(UtilsSetup.finder.by_text("Output is TextButtonLongClick"))
 
 

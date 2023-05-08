@@ -2,7 +2,7 @@ from setup import UtilsSetup
 import traceback
 
 
-class HowToWait:
+class WhatToWait:
     BY_VALUE_KEY = 1
     BY_TYPE = 2  # Default
     BY_TEXT = 3
@@ -10,21 +10,21 @@ class HowToWait:
     # excludeSemantics: true or explicitChildNodes:true depending on scenario,
     # View this issue :https://github.com/flutter/flutter/issues/126059
     BY_SEMANTIC_LABEL = 4
-    HARD_CODED = 5
+    HARD_CODED = 5 # Have no test coverage
 
 
-def wait(value: str, how_to_wait: int = HowToWait.BY_TYPE, duration: int = 5000) -> bool:
+def wait(value: str, what_to_wait: int = WhatToWait.BY_TYPE, duration: int = 5000) -> bool:
     print("Waiting For '" + value + "' : To Be Found.")
-    return __wait(value, duration, False, how_to_wait)
+    return __wait(value, duration, False, what_to_wait)
 
 
-def wait_for_absence(value: str, how_to_wait: int = HowToWait.BY_TYPE, duration: int = 5000) -> bool:
+def wait_for_absence(value: str, what_to_wait: int = WhatToWait.BY_TYPE, duration: int = 5000) -> bool:
     print("Waiting For '" + value + "' : Not To Be Found.")
-    return __wait(value, duration, True, how_to_wait)
+    return __wait(value, duration, True, what_to_wait)
 
 
-def __wait(value: str, duration: int, for_absence: bool, how_to_wait: int = HowToWait.BY_TYPE) -> bool:
-    finder = __get_finder(how_to_wait, value)
+def __wait(value: str, duration: int, for_absence: bool, what_to_wait: int = WhatToWait.BY_TYPE) -> bool:
+    finder = __get_finder(what_to_wait, value)
     try:
         if for_absence:
             UtilsSetup.driver.execute_script('flutter:waitForAbsent', finder, duration)
@@ -44,13 +44,13 @@ def __wait(value: str, duration: int, for_absence: bool, how_to_wait: int = HowT
 
 def __get_finder(how_to_wait, value):
     match how_to_wait:
-        case HowToWait.BY_VALUE_KEY:
+        case WhatToWait.BY_VALUE_KEY:
             return UtilsSetup.finder.by_value_key(value)
-        case HowToWait.BY_TYPE:
+        case WhatToWait.BY_TYPE:
             return UtilsSetup.finder.by_type(value)
-        case HowToWait.BY_TEXT:
+        case WhatToWait.BY_TEXT:
             return UtilsSetup.finder.by_text(value)
-        case HowToWait.BY_SEMANTIC_LABEL:
+        case WhatToWait.BY_SEMANTIC_LABEL:
             return UtilsSetup.finder.by_semantics_label(value)
-        case HowToWait.HARD_CODED:
+        case WhatToWait.HARD_CODED:
             return value
