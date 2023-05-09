@@ -103,11 +103,13 @@ def group_testing_scroll():
 
 
 def init(_):
-    assert False
+    FlutterElement(UtilsSetup.driver, UtilsSetup.finder.by_value_key("/ScrollTestScreen")).click()
+    assert finds_widget(UtilsSetup.finder.by_type("ScrollTestScreen"))
 
 
 def going_to_whole_page_vertical(_):
-    assert False
+    click("/ScrollMaterialScreen")
+    assert finds_widget(UtilsSetup.finder.by_type("ScrollMaterialScreen"))
 
 
 def testing_whole_page_scroll_vertical(_):
@@ -115,7 +117,7 @@ def testing_whole_page_scroll_vertical(_):
 
 
 def going_to_whole_page_horizontal(_):
-    assert False
+    click("axis_swift", what_to_click=WhatToClick.BY_VALUE_KEY)
 
 
 def testing_whole_page_scroll_horizontal(_):
@@ -123,7 +125,9 @@ def testing_whole_page_scroll_horizontal(_):
 
 
 def going_to_by_type_single_child_vertical(_):
-    assert False
+    __go_back()
+    click("/ScrollByTypeScreen")
+    assert finds_widget(UtilsSetup.finder.by_type("ScrollByTypeScreen"))
 
 
 def testing_by_type_single_child_scroll_view_vertical(_):
@@ -131,7 +135,7 @@ def testing_by_type_single_child_scroll_view_vertical(_):
 
 
 def going_to_by_type_single_child_horizontal(_):
-    assert False
+    click("axis_swift", what_to_click=WhatToClick.BY_VALUE_KEY)
 
 
 def testing_by_type_single_child_scroll_view_horizontal(_):
@@ -139,7 +143,8 @@ def testing_by_type_single_child_scroll_view_horizontal(_):
 
 
 def going_to_list_view_vertical(_):
-    assert False
+    click("axis_swift", what_to_click=WhatToClick.BY_VALUE_KEY)
+    click("type_swift", what_to_click=WhatToClick.BY_VALUE_KEY)
 
 
 def testing_by_type_list_view_vertical(_):
@@ -147,7 +152,7 @@ def testing_by_type_list_view_vertical(_):
 
 
 def going_to_list_view_horizontal(_):
-    assert False
+    click("axis_swift", what_to_click=WhatToClick.BY_VALUE_KEY)
 
 
 def testing_by_type_list_view_horizontal(_):
@@ -155,7 +160,8 @@ def testing_by_type_list_view_horizontal(_):
 
 
 def going_to_semantic_vertical(_):
-    assert False
+    __go_back()
+    click("/ScrollBySemanticScreen")
 
 
 def testing_semantic_vertical(_):
@@ -163,7 +169,7 @@ def testing_semantic_vertical(_):
 
 
 def going_to_semantic_horizontal(_):
-    assert False
+    click("axis_swift", what_to_click=WhatToClick.BY_VALUE_KEY)
 
 
 def testing_semantic_horizontal(_):
@@ -171,7 +177,8 @@ def testing_semantic_horizontal(_):
 
 
 def going_to_key_vertical(_):
-    assert False
+    __go_back()
+    click("/ScrollByKeyScreen")
 
 
 def testing_key_vertical(_):
@@ -179,11 +186,35 @@ def testing_key_vertical(_):
 
 
 def going_to_key_horizontal(_):
-    assert False
+    click("axis_swift", what_to_click=WhatToClick.BY_VALUE_KEY)
 
 
 def testing_key_horizontal(_):
     assert False
+
+
+def __go_back():
+    UtilsSetup.driver.switch_to.context("NATIVE_APP")
+    UtilsSetup.driver.back()
+    UtilsSetup.driver.switch_to.context("FLUTTER")
+
+
+def __finds_start_assert():
+    assert finds_some_widgets(UtilsSetup.finder.by_value_key("start_key"), timeout=50)
+    assert finds_some_widgets(UtilsSetup.finder.by_value_key("mid_key"), timeout=50) is False
+    assert finds_some_widgets(UtilsSetup.finder.by_value_key("end_key"), timeout=50) is False
+
+
+def __finds_mid_assert():
+    assert finds_some_widgets(UtilsSetup.finder.by_value_key("start_key"), timeout=50) is False
+    assert finds_some_widgets(UtilsSetup.finder.by_value_key("mid_key"), timeout=50)
+    assert finds_some_widgets(UtilsSetup.finder.by_value_key("end_key"), timeout=50) is False
+
+
+def __finds_end_assert():
+    assert finds_some_widgets(UtilsSetup.finder.by_value_key("start_key"), timeout=50) is False
+    assert finds_some_widgets(UtilsSetup.finder.by_value_key("mid_key"), timeout=50) is False
+    assert finds_some_widgets(UtilsSetup.finder.by_value_key("end_key"), timeout=50)
 
 
 if __name__ == "__main__":

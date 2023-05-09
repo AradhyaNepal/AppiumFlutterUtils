@@ -37,12 +37,12 @@ class ScrollTestScreen extends StatelessWidget {
                   route: ScrollByTypeScreen.route,
                 ),
                 NavigationWidget(
-                  heading: ScrollByKeyScreen.heading,
-                  route: ScrollByKeyScreen.route,
-                ),
-                NavigationWidget(
                   heading: ScrollBySemanticScreen.heading,
                   route: ScrollBySemanticScreen.route,
+                ),
+                NavigationWidget(
+                  heading: ScrollByKeyScreen.heading,
+                  route: ScrollByKeyScreen.route,
                 ),
               ],
             ),

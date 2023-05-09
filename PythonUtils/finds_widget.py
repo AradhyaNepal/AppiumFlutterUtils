@@ -2,14 +2,15 @@ import traceback
 from setup import UtilsSetup
 
 
-def finds_some_widgets(finder: str) -> bool:
+def finds_some_widgets(finder: str, timeout: int = 1250) -> bool:
     try:
-        UtilsSetup.driver.execute_script('flutter:waitFor', finder, 1250)
+        UtilsSetup.driver.execute_script('flutter:waitFor', finder, timeout)
         return True
     except Exception as e:
         print(e)
         print(traceback.format_exc())
         return False
+
 
 # def finds_nothing(finder: str) -> bool:
 #     try:
