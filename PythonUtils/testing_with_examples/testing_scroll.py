@@ -104,16 +104,20 @@ def group_testing_scroll():
 
 def init(_):
     FlutterElement(UtilsSetup.driver, UtilsSetup.finder.by_value_key("/ScrollTestScreen")).click()
-    assert finds_widget(UtilsSetup.finder.by_type("ScrollTestScreen"))
+    assert finds_some_widgets(UtilsSetup.finder.by_type("ScrollTestScreen"))
 
 
 def going_to_whole_page_vertical(_):
     click("/ScrollMaterialScreen")
-    assert finds_widget(UtilsSetup.finder.by_type("ScrollMaterialScreen"))
+    assert finds_some_widgets(UtilsSetup.finder.by_type("ScrollMaterialScreen"))
 
 
 def testing_whole_page_scroll_vertical(_):
-    assert False
+    __finds_start_assert()
+    scroll(go_down_percentage=100)
+    __finds_mid_assert()
+    scroll(go_down_percentage=100)
+    __finds_end_assert()
 
 
 def going_to_whole_page_horizontal(_):
@@ -121,17 +125,25 @@ def going_to_whole_page_horizontal(_):
 
 
 def testing_whole_page_scroll_horizontal(_):
-    assert False
+    __finds_start_assert()
+    scroll(go_right_percentage=100)
+    __finds_mid_assert()
+    scroll(go_right_percentage=100)
+    __finds_end_assert()
 
 
 def going_to_by_type_single_child_vertical(_):
     __go_back()
     click("/ScrollByTypeScreen")
-    assert finds_widget(UtilsSetup.finder.by_type("ScrollByTypeScreen"))
+    assert finds_some_widgets(UtilsSetup.finder.by_type("ScrollByTypeScreen"))
 
 
 def testing_by_type_single_child_scroll_view_vertical(_):
-    assert False
+    __finds_start_assert()
+    scroll(go_down_percentage=100, what_to_scroll="SingleChildScrollView", scroll_type=ScrollType.BY_TYPE)
+    __finds_mid_assert()
+    scroll(go_down_percentage=100, what_to_scroll="SingleChildScrollView", scroll_type=ScrollType.BY_TYPE)
+    __finds_end_assert()
 
 
 def going_to_by_type_single_child_horizontal(_):
@@ -139,7 +151,11 @@ def going_to_by_type_single_child_horizontal(_):
 
 
 def testing_by_type_single_child_scroll_view_horizontal(_):
-    assert False
+    __finds_start_assert()
+    scroll(go_right_percentage=100, what_to_scroll="SingleChildScrollView", scroll_type=ScrollType.BY_TYPE)
+    __finds_mid_assert()
+    scroll(go_right_percentage=100, what_to_scroll="SingleChildScrollView", scroll_type=ScrollType.BY_TYPE)
+    __finds_end_assert()
 
 
 def going_to_list_view_vertical(_):
@@ -148,7 +164,11 @@ def going_to_list_view_vertical(_):
 
 
 def testing_by_type_list_view_vertical(_):
-    assert False
+    __finds_start_assert()
+    scroll(go_down_percentage=100, what_to_scroll="ListView", scroll_type=ScrollType.BY_TYPE)
+    __finds_mid_assert()
+    scroll(go_down_percentage=100, what_to_scroll="ListView", scroll_type=ScrollType.BY_TYPE)
+    __finds_end_assert()
 
 
 def going_to_list_view_horizontal(_):
@@ -156,7 +176,11 @@ def going_to_list_view_horizontal(_):
 
 
 def testing_by_type_list_view_horizontal(_):
-    assert False
+    __finds_start_assert()
+    scroll(go_right_percentage=100, what_to_scroll="ListView", scroll_type=ScrollType.BY_TYPE)
+    __finds_mid_assert()
+    scroll(go_right_percentage=100, what_to_scroll="ListView", scroll_type=ScrollType.BY_TYPE)
+    __finds_end_assert()
 
 
 def going_to_semantic_vertical(_):
@@ -165,7 +189,11 @@ def going_to_semantic_vertical(_):
 
 
 def testing_semantic_vertical(_):
-    assert False
+    __finds_start_assert()
+    scroll(go_down_percentage=100, what_to_scroll="SingleChildScrollView", scroll_type=ScrollType.BY_SEMANTIC)
+    __finds_mid_assert()
+    scroll(go_down_percentage=100, what_to_scroll="SingleChildScrollView", scroll_type=ScrollType.BY_SEMANTIC)
+    __finds_end_assert()
 
 
 def going_to_semantic_horizontal(_):
@@ -173,7 +201,11 @@ def going_to_semantic_horizontal(_):
 
 
 def testing_semantic_horizontal(_):
-    assert False
+    __finds_start_assert()
+    scroll(go_right_percentage=100, what_to_scroll="SingleChildScrollView", scroll_type=ScrollType.BY_SEMANTIC)
+    __finds_mid_assert()
+    scroll(go_right_percentage=100, what_to_scroll="SingleChildScrollView", scroll_type=ScrollType.BY_SEMANTIC)
+    __finds_end_assert()
 
 
 def going_to_key_vertical(_):
@@ -182,7 +214,11 @@ def going_to_key_vertical(_):
 
 
 def testing_key_vertical(_):
-    assert False
+    __finds_start_assert()
+    scroll(go_down_percentage=100, what_to_scroll="single_child_scroll_view", scroll_type=ScrollType.BY_KEY)
+    __finds_mid_assert()
+    scroll(go_down_percentage=100, what_to_scroll="single_child_scroll_view", scroll_type=ScrollType.BY_KEY)
+    __finds_end_assert()
 
 
 def going_to_key_horizontal(_):
@@ -190,7 +226,11 @@ def going_to_key_horizontal(_):
 
 
 def testing_key_horizontal(_):
-    assert False
+    __finds_start_assert()
+    scroll(go_right_percentage=100, what_to_scroll="single_child_scroll_view", scroll_type=ScrollType.BY_KEY)
+    __finds_mid_assert()
+    scroll(go_right_percentage=100, what_to_scroll="single_child_scroll_view", scroll_type=ScrollType.BY_KEY)
+    __finds_end_assert()
 
 
 def __go_back():
