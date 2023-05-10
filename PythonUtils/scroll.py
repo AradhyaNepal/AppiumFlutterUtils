@@ -19,7 +19,7 @@ def scroll(go_down_percentage: float = 0, go_right_percentage: float = 0, what_t
     go_down_value = dx_total * (go_down_percentage / 100)
     go_right_value = dy_total * (go_right_percentage / 100)
     scroll_value = dict(
-        dx=go_right_value,
+        dx=-go_right_value,
         dy=-go_down_value,
         durationMilliseconds=100,
         frequency=30,

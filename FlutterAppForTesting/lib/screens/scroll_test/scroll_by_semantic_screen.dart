@@ -12,19 +12,59 @@ class ScrollBySemanticScreen extends StatefulWidget {
 
 class _ScrollBySemanticScreenState extends State<ScrollBySemanticScreen> {
   bool vertical = true;
+  final ScrollController scrollController = ScrollController();
+  late Size size;
+  bool showFirst = true;
+  bool showMid = false;
+  bool showEnd = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    size = MediaQuery.of(context).size;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    scrollController.addListener(() {
+      if (((scrollController.offset > size.width * 2 && !vertical) ||
+              (scrollController.offset > size.height * 1 && vertical)) &&
+          !showMid &&
+          !showEnd) {
+        showMid = true;
+        showFirst = false;
+      } else if (((scrollController.offset > size.width * 5 && !vertical) ||
+              (scrollController.offset > size.height * 3 && vertical)) &&
+          !showEnd) {
+        showEnd = true;
+        showMid = false;
+      }
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
-    final size=MediaQuery.of(context).size;
     return SizedBox(
-      height: MediaQuery.of(context).size.height,
-      width: MediaQuery.of(context).size.width,
+      height: size.height,
+      width: size.width,
       child: Scaffold(
         appBar: AppBar(
           actions: [
             IconButton(
               key: const ValueKey("axis_swift"),
               onPressed: () {
+                scrollController.jumpTo(0);
+                showFirst = true;
+                showMid = false;
+                showEnd = false;
                 vertical = !vertical;
                 setState(() {});
               },
@@ -37,66 +77,73 @@ class _ScrollBySemanticScreenState extends State<ScrollBySemanticScreen> {
         body: Semantics(
           label: "SingleChildScrollView",
           child: SingleChildScrollView(
+            controller: scrollController,
             scrollDirection: vertical ? Axis.vertical : Axis.horizontal,
             child: vertical
                 ? Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const Text(
-                        "Start",
-                        textAlign: TextAlign.center,
-                        key: ValueKey("start_key"),
-                      ),
+                      if (showFirst)
+                        const Text(
+                          "Start",
+                          textAlign: TextAlign.center,
+                          key: ValueKey("start_key"),
+                        ),
                       SizedBox(
                         height: size.height * 2,
                       ),
-                      const Text(
-                        "Mid",
-                        textAlign: TextAlign.center,
-                        key: ValueKey("mid_key"),
-                      ),
+                      if (showMid)
+                        const Text(
+                          "Mid",
+                          textAlign: TextAlign.center,
+                          key: ValueKey("mid_key"),
+                        ),
                       SizedBox(
                         height: size.height * 2,
                       ),
-                      const Text(
-                        "End",
-                        textAlign: TextAlign.center,
-                        key: ValueKey("end_key"),
-                      ),
+                      if (showEnd)
+                        const Text(
+                          "End",
+                          textAlign: TextAlign.center,
+                          key: ValueKey("end_key"),
+                        ),
                     ],
                   )
                 : Row(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
-                      const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Start",
-                          key: ValueKey("start_key"),
+                      if (showFirst)
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Start",
+                            key: ValueKey("start_key"),
+                          ),
                         ),
-                      ),
                       SizedBox(
-                        width: size.width * 2,
+                        width: size.width * 3,
                       ),
-                      const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "Mid",
-                          textAlign: TextAlign.center,
-                          key: ValueKey("mid_key"),
+                      if (showMid)
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "Mid",
+                            textAlign: TextAlign.center,
+                            key: ValueKey("mid_key"),
+                          ),
                         ),
-                      ),
                       SizedBox(
-                        width: size.width * 2,
+                        width: size.width * 3,
                       ),
-                      const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          "End",
-                          textAlign: TextAlign.center,
-                          key: ValueKey("end_key"),
+                      if (showEnd)
+                        const Align(
+                          alignment: Alignment.center,
+                          child: Text(
+                            "End",
+                            textAlign: TextAlign.center,
+                            key: ValueKey("end_key"),
+                          ),
                         ),
-                      ),
                     ],
                   ),
           ),
