@@ -172,7 +172,7 @@ def testing_by_type_list_view_vertical(_):
     __finds_start_assert()
     scroll(go_down_percentage=325, what_to_scroll="ListView", scroll_type=ScrollType.BY_TYPE)
     __finds_mid_assert()
-    scroll(go_down_percentage=300, what_to_scroll="ListView", scroll_type=ScrollType.BY_TYPE)
+    scroll(go_down_percentage=320, what_to_scroll="ListView", scroll_type=ScrollType.BY_TYPE)
     __finds_end_assert()
 
 
@@ -192,13 +192,14 @@ def testing_by_type_list_view_horizontal(_):
 def going_to_semantic_vertical(_):
     __go_back()
     click("/ScrollBySemanticScreen")
+    time.sleep(0.5)
 
 
 def testing_semantic_vertical(_):
     __finds_start_assert()
     scroll(go_down_percentage=325, what_to_scroll="SingleChildScrollView", scroll_type=ScrollType.BY_SEMANTIC)
     __finds_mid_assert()
-    scroll(go_down_percentage=300, what_to_scroll="SingleChildScrollView", scroll_type=ScrollType.BY_SEMANTIC)
+    scroll(go_down_percentage=310, what_to_scroll="SingleChildScrollView", scroll_type=ScrollType.BY_SEMANTIC)
     __finds_end_assert()
 
 
@@ -218,6 +219,7 @@ def testing_semantic_horizontal(_):
 def going_to_key_vertical(_):
     __go_back()
     click("/ScrollByKeyScreen")
+    time.sleep(0.5)
 
 
 def testing_key_vertical(_):

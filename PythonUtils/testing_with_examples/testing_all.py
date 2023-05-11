@@ -42,10 +42,10 @@ def main():
         group_testing_enter_text,
     )
     __go_back()
-    # group(
-    #     "Testing Scroll",
-    #     group_testing_scroll,
-    # )
+    group(
+        "Testing Scroll",
+        group_testing_scroll,
+    )
     FlutterReportGenerator.generate_report()
 
 
